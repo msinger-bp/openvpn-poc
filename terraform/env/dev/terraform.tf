@@ -5,16 +5,16 @@ terraform {
   required_version = "~> 0.11.14"
   backend "s3" {
     region         = "us-west-2"
-    bucket         = "bptfref-tfstate"
-    key            = "acdev1.tfstate"
-    dynamodb_table = "bptfref-tfstate-lock"
+    bucket         = "acadience-tfstate"
+    key            = "dev.tfstate"
+    dynamodb_table = "acadience-tfstate-lock"
     encrypt        = false
   }
 }
 
 provider "aws" {
   allowed_account_ids = [
-    "509819115418" # BITPUSHER TF DEV ACCOUNT
+    "695990525005"
   ]
   region  = "us-west-2"
 }

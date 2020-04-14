@@ -7,34 +7,34 @@
 ##
 
 ##  TERRAFORM S3 REMOTE STATE VARS MUST CONFORM WITH THE VALUES IN terraform.tf
-tfstate_s3_bucket           = "bptfref-tfstate"
+tfstate_s3_bucket           = "acadience-tfstate"
 tfstate_s3_bucket_region    = "us-west-2"
-tfstate_key                 = "actest.tfstate"
-tfstate_ddb_lock_table      = "bptfref-tfstate-lock"
+tfstate_key                 = "dev.tfstate"
+tfstate_ddb_lock_table      = "acadience-tfstate-lock"
 
 ##  ORGANIZATION AND ENVIRONMENT NAME
 ##  THESE ARE USED AS TAGS AND ALSO AFFECT RESOURCE NAMING
-org                         = "bptfref" # I.E. "PRODUCT" NAME LIKE NEXIA, FREEDOMPOP, ALPHANUM - NO HYPHENS OR UNDERSCORES
-env                         = "actest" # I.E., "dev", "prod", ETC, ALPHANUM - NO HYPHENS OR UNDERSCORES
+org                         = "acadience" # I.E. "PRODUCT" NAME LIKE NEXIA, FREEDOMPOP, ALPHANUM - NO HYPHENS OR UNDERSCORES
+env                         = "dev" # I.E., "dev", "prod", ETC, ALPHANUM - NO HYPHENS OR UNDERSCORES
 
 ##  OTHER GLOBAL RESOURCE TAGS
-owner                       = "acutchin" # AWS TAG TO IDENTIFY ENGINEER OR GROUP RESPONSIBLE FOR THIS ENV
-billing_code                = "bp-tf-dev" # AWS TAG FOR BILLING ANALYSIS PURPOSES
+owner                       = "dlieberman" # AWS TAG TO IDENTIFY ENGINEER OR GROUP RESPONSIBLE FOR THIS ENV
+billing_code                = "acadience-dev" # AWS TAG FOR BILLING ANALYSIS PURPOSES
 
 ##  AWS ACCOUNT ID
-aws_account_id              = "509819115418" # BITPUSHER TF DEV ACCOUNT
+aws_account_id              = "695990525005" # BITPUSHER TF DEV ACCOUNT
 
 ##  AWS REGION
 primary_aws_region          = "us-west-2"
 
 ##  DEFAULT EC2 INSTANCE CONFIGURATION
-ec2_key                                   = "bp.dev" # EC2 SSH "KEY PAIR" - MUST PRE-EXIST!
-default_ec2_instance_type                 = "r5.large"
-default_root_volume_size                  = "10"
+ec2_key                                   = "bitpusher" # EC2 SSH "KEY PAIR" - MUST PRE-EXIST!
+default_ec2_instance_type                 = "t3.medium"
+default_root_volume_size                  = "30"
 default_root_volume_type                  = "gp2"
 default_root_volume_iops                  = ""
 default_root_volume_delete_on_termination = "true"
-default_addl_volume_size                  = "10"
+default_addl_volume_size                  = "50"
 default_addl_volume_type                  = "gp2"
 default_addl_volume_iops                  = ""
 timezone                                  = "/usr/share/zoneinfo/Etc/UTC"
@@ -87,12 +87,12 @@ subnet_group_octets         = {
 }
 
 ##  PUBLIC ROUT53 ZONE - MUST PRE-EXIST AND BE IN THIS ACCOUNT
-public_parent_domain        = "bptfref.com"
-public_parent_domain_ID     = "ZRJQOZR3AAA0T"
+public_parent_domain        = "acadience.bitpushertest.com"
+public_parent_domain_ID     = "Z09814121B8ZFGSBPE0YB"
 
 ##  CHEF INTEGRATION
-chef_repo                   = "git@cgit01.bitpusher.com:bitpusher/reference" ##  CHANGE THIS TO YOUR GIT REPO NAME
-chef_environment            = "actest" ##  CHANGE THIS TO THE CHEF ENVIRONMENT YOU WISH TO USE FOR THIS ENV
+chef_repo                   = "git@cgit01.bitpusher.com:acadience/infra" ##  CHANGE THIS TO YOUR GIT REPO NAME
+chef_environment            = "dev" ##  CHANGE THIS TO THE CHEF ENVIRONMENT YOU WISH TO USE FOR THIS ENV
 
 ##  PRIVATE CERTIFICATE AUTHORITY
 ##  DISABLED B/C IT IS TOO EXPENSIVE

@@ -1,83 +1,46 @@
-# Create and bootstrap new terraform/chef-integrated environment
+CREATE AND BOOTSTRAP NEW CHEF-INTEGRATED ENVIRONMENT
 
-## Create S3 remote state resources (DDB table and S3 bucket), if necessary
+# CREATE S3 REMOTE STATE RESOURCES (DDB TABLE AND S3 BUCKET), IF NECESSARY
 
-  NOTE: We usually configure one DDB table and one S3 bucket per AWS account
+  * We usually configure one DDB table and one S3 bucket per AWS account
 
-  * The DDB table must have a single partition key "LockID" (capitalization required), type String, with default settings.
+  * Use the S3 and DDB consoles
 
-  * The S3 bucket requires no special configuration
-
-
-## Create and configure a new environment directory under terraform/env
-
-  1. Copy the reference environment directory to your new environment directory
+  * Or, use Aris's handy aws cli commands:
 
     ```
-    cd terraform/env && cp -R reference <new_env> && cd <new_env>
+    set bucket <state_bucket>
+    set lock_table <dynamodb_table>
+    aws s3 mb s3://$bucket
+    aws s3api put-bucket-versioning --bucket $bucket --versioning-configuration "Status=Enabled"
+    aws dynamodb create-table \
+        --table-name "$lock_table" \
+        --key-schema "AttributeName=LockID,KeyType=HASH" \
+        --attribute-definitions "AttributeName=LockID,AttributeType=S" \
+      --provisioned-throughput "ReadCapacityUnits=1,WriteCapacityUnits=1"
     ```
 
-  2. Configure terraform.tf 
+  TODO: Discuss creating and attaching IAM policies for bucket and table here vs managing with TF
+ 
 
-    * Must be consistent with the Terraform remote state config and AWS account id and region
+# Create a new environment directory under terraform/env
 
-  3. Configure terraform.tfvars
+  ```
+  cd terraform/env && cp -R reference <new_env>
+  ```
 
-    * Most of the env-specific configuration variables are in terraform.tfvars
-
-    * At the very least, you must configure the following variables:
-
-      * env
-
-        * The literal name of your new environment. This is used many places in the TF and Chef code.
-
-        * It must be unique in the scope of the AWS account
-
-        * Must be alphanumeric only, and should be short and concise
-
-        * The Chef Environment must be named with this same string    
-
-      * owner
-
-        * Should reflect the engineer or group responsible for the environment
-
-      * billing_code
-
-        * Should also reflect the appropriate group or project
-
-      * aws_account_id
-
-        * The AWS account id in which you intend to deploy the environment
-
-      * primary_aws_region
-
-        * The AWS region in which you intend to deploy the environment
-
-      * ec2_key
-
-        * You must have a copy of the public key to get access to the environment
-
-# Instantiate / Apply / Create / Deploy the Environment
-
-  1. Delete pre-existing .terraform directory, if present. It will be re-created.
-
-    ```
-    rm -rf .terraform # IN CASE YOU COPIED A PRE-EXISTING ENV DIR WITH LOCAL STATE, WHICH WOULD SCREW THINGS UP
-    terraform init
-    terraform apply -target=module.base -target=module.vpc-main -target=module.chef
-    ```
-
-  2. Initialize Terraform - creates the .terraform dir and copies remote and local modules to it
-
-    ```
-    rm -rf .terraform # IN CASE YOU COPIED A PRE-EXISTING ENV DIR WITH LOCAL STATE, WHICH WOULD SCREW THINGS UP
-    terraform init
-    terraform apply -target=module.base -target=module.vpc-main -target=module.chef
-    ```
+# Edit terraform.tf and terraform.tfvars
 
 
-  2. Create 
 
+
+# INSTANTIATE THE BASE, VPC, AND CHEF-EFS MODULES
+
+```
+rm -rf .terraform # IN CASE YOU COPIED A PRE-EXISTING ENV DIR WITH LOCAL STATE, WHICH WOULD SCREW THINGS UP
+terraform init
+terraform apply -target=module.base -target=module.vpc-main -target=module.chef
+```
 
 # Load the /var/chef EFS mount from the chef loader instance:
   1. SSH to the loader instance and sudo:
@@ -167,7 +130,7 @@ terraform apply
       | wsrep_cluster_size               | 3                                                      |
       ...
       | wsrep_cluster_status             | Primary                                                |
-      1G| wsrep_connected                  | ON                                                     |
+      | wsrep_connected                  | ON                                                     |
       ...
       | wsrep_ready                      | ON                                                     |
       +----------------------------------+--------------------------------------------------------+
