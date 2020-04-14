@@ -16,7 +16,7 @@ module "frontend" {
   ##  HTTP CLUSTER/INSTANCE CONFIG
   http_subnet_group_octet           = "${var.subnet_group_octets["frontend_http"]}"
   http_placement_group_strategy     = "spread"
-  http_instance_count               = "${var.vpc-main_az_count}"
+  http_instance_count               = "1"
   http_instance_type                = "t3.medium"
   http_chef_role                    = "frontend_http"
   ##  OUTPUTS FROM REQUIRED MODULES
