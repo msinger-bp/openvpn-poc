@@ -70,7 +70,7 @@ subnet_group_octets         = {
   db2                       = "82" ##  RDS-MYSQL COMPLEX CLUSTER
   db3                       = "83" ##  RDS-POSTGRES SIMPLE STANDALONE
   db4                       = "84" ##  RDS-POSTGRES COMPLEX CLUSTER
-  db5                       = "85" ##  AURORA-MYSQL-5.7 SIMPLE STANDALONE
+  db-main                   = "85" ##  AURORA-MYSQL-5.7 SIMPLE STANDALONE
   db6                       = "86" ##  AURORA-MYSQL-5.7 COMPLEX CLUSTER
   nlbhap-nlb                = "90"
   nlbhap-instances          = "91"
@@ -81,9 +81,6 @@ subnet_group_octets         = {
   galera2                   = "113"
   galera2-rds-backup        = "114"
   emr                       = "120"
-  smil-redis                = "131"
-  smil-worker               = "132"
-  smil-manager              = "133"
 }
 
 ##  PUBLIC ROUT53 ZONE - MUST PRE-EXIST AND BE IN THIS ACCOUNT
