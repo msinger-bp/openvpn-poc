@@ -20,7 +20,7 @@ resource "aws_lb_listener" "http_443" {
   certificate_arn                   = "${module.acm.arn}"
   default_action {
     type                            = "forward"
-    target_group_arn                = "${aws_lb_target_group.https_80.arn}"
+    target_group_arn                = "${aws_lb_target_group.http_80.arn}"
   }
 }
 
