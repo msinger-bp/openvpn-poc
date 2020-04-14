@@ -5,7 +5,7 @@
 ##        * PORT 443 LISTENER WITH AUTOMATICALLY VALIDATED PUBLIC ACM SSL CERTIFICATE
 ##    * TWO PRIVATE/INTERNAL, UNIQUELY-NAMED EC2 CLUSTERS
 ##        * PORT 80 TRAFFIC IS ROUTED TO 'HTTP' CLUSTER
-##        * PORT 443 TRAFFIC IS ROUTED TO 'HTTPS' CLUSTER
+##        * PORT 443 TRAFFIC IS ROUTED TO 'HTTP' CLUSTER
 ##
 
 module "frontend" {
@@ -32,5 +32,4 @@ module "frontend" {
   tags                              = "${local.tags}"
 }
 output "frontend_alb_public_cname"      { value = "${module.frontend.alb_public_cname}" }
-output "frontend_http_internal_cnames"   { value = "${module.frontend.http_internal_cnames}" }
-output "frontend_https_internal_cnames"   { value = "${module.frontend.https_internal_cnames}" }
+output "frontend_internal_cnames"   { value = "${module.frontend.http_internal_cnames}" }
