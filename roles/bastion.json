@@ -2,8 +2,10 @@
     "name": "bastion",
     "json_class": "Chef::Role",
     "description": "bastion role",
-    "run_list": [ "recipe[ref-bastion::default]" ],
-    "default_attributes": { },
+    "run_list": [ "recipe[acadience-bastion::default]" ],
+    "default_attributes": {
+      "base_role": "bastion"
+    },
     "override_attributes": { },
     "chef_type": "role"
 }
