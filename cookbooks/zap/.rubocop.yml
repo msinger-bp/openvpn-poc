@@ -1,0 +1,11 @@
+inherit_gem:
+  cookstyle: config/cookstyle.yml
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

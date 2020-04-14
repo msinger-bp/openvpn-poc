@@ -1,0 +1,12 @@
+### THIS FILE IS MANAGED BY CHEF!!!
+### To override chef, touch <%= "#{@metric}.prom.override" -%> and chef will not update this file.
+
+# TYPE <%= @metric -%> untyped 
+<% @values.each do |k,val| -%>
+  <% s||=[] -%>
+  <% k.each do |kk,vv| -%>
+    <% s << "#{kk}=\"#{vv}\"" -%>
+  <% end -%>
+<%= "threshold::#{@metric}{#{s.join(',')}} #{val}" %>
+<% end %>
+

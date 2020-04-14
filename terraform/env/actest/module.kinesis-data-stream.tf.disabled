@@ -1,0 +1,15 @@
+##  KINESIS DATA STREAM
+module "kinesis-data-stream" {
+  source                    = "../../site-modules/kinesis-data-stream/0.1.0"
+  name                      = "kinesis-data-stream"
+  shard_count               = "2"
+  retention_period          = "24" ##  HOURS, 24-168
+  enforce_consumer_deletion = "true"
+  env_strings               = "${local.env_strings}"
+  base_strings              = "${local.base_strings}"
+  vpc_strings               = "${local.vpc-main_strings}"
+  vpc_lists                 = "${local.vpc-main_lists}"
+  az_count                  = "${var.vpc-main_az_count}"
+  tags                      = "${local.tags}"
+}
+output "kinesis-data-stream_arn" { value = "${module.kinesis-data-stream.arn}" }

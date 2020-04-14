@@ -1,0 +1,9 @@
+{
+    "name": "frontend_http",
+    "json_class": "Chef::Role",
+    "description": "frontend_http role",
+    "run_list": [ "recipe[example-web::default]" ],
+    "default_attributes": { },
+    "override_attributes": { },
+    "chef_type": "role"
+}

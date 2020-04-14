@@ -1,0 +1,22 @@
+##  INVOCATION OF SIMPLE ONE-INSTANCE RDS-AURORA MYSQL 5.7 CLUSTER
+##    * NO MULTI-AZ
+##    * DEFAULT INSTANCE CLASS (db5.t3.small)
+##    * DEFAULT INSTANCE AND CLUSTER PARAMETERS
+##    * DEFAULT CREDENTIALS
+module "db5" {
+  source                  = "../../site-modules/aurora-mysql/0.1.0"
+  name                    = "db5"
+  subnet_group_octet      = "${var.subnet_group_octets["db5"]}"
+  env_strings             = "${local.env_strings}"
+  base_strings            = "${local.base_strings}"
+  vpc_strings             = "${local.vpc-main_strings}"
+  vpc_lists               = "${local.vpc-main_lists}"
+  az_count                = "${var.vpc-main_az_count}"
+  tags                    = "${local.tags}"
+}
+output "db5_id"              { value = "${module.db5.id}" }
+output "db5_arn"             { value = "${module.db5.arn}" }
+output "db5_admin_password"  { value = "${module.db5.admin_password}" }
+output "db5_admin_username"  { value = "${module.db5.admin_username}" }
+output "db5_endpoint"        { value = "${module.db5.endpoint}" }
+output "db5_reader_endpoint" { value = "${module.db5.reader_endpoint}" }

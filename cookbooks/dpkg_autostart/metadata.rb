@@ -1,0 +1,6 @@
+name 'dpkg_autostart'
+version '0.2.0'
+maintainer 'BitPusher, LLC'
+maintainer_email 'ops@bitpusher.com'
+description 'Control service actions initialized from dpkg'
+license 'Apache 2.0'

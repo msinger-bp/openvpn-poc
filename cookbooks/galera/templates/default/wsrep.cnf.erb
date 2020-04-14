@@ -1,0 +1,31 @@
+[mysqld]
+
+#wsrep_provider=/usr/lib/libgalera_smm.so ##  SYMLINK /usr/lib/libgalera_smm.so -> galera3/libgalera_smm.so
+wsrep_provider=/usr/lib/galera3/libgalera_smm.so
+wsrep_provider_options=<%= node['galera']['wsrep_provider_options'] %>
+
+wsrep_cluster_name=<%= node['galera']['wsrep_cluster_name'] %>
+
+wsrep_cluster_address=<%= node['galera']['wsrep_cluster_address'] %>
+
+wsrep_node_name=<%= node['hostname'] %>
+wsrep_node_address=<%= node['ipaddress'] %>
+
+wsrep_sst_method=xtrabackup-v2
+wsrep_sst_auth=<%= node['galera']['sst_user'] + ':' + node['galera']['sst_password'] %>
+
+pxc_strict_mode=<%= node['galera']['pxc_strict_mode'] %>
+
+wsrep_log_conflicts
+
+wsrep_slave_threads=<%= node['galera']['wsrep_slave_threads'] %>
+
+##  server-id is composed of three digits
+##  first digit is the index of node's AZ in the list of vpc AZs
+##  second and third digits are the last 2 digits of the hostname
+##  so, if you have three AZs in the VPC: us-west-2a, us-west-2c, and us-west-2d
+##  instance a01 server-id is 001
+##  instance c02 server-id is 102
+##  instance d03 server-id is 203
+server-id=<%= node['terraform'][node.chef_environment]['modules'][0]['outputs']['vpc-main_az_list']['value'].index(node['terraform'][node.chef_environment]['modules'][0]['outputs']['primary_aws_region']['value']+node['hostname'].split('-').last.gsub(/[0-9]/,'')).to_s + node['hostname'].split('-').last.gsub(/[^0-9]/,'') %>
+

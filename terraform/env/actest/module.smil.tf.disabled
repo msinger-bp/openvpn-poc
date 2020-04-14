@@ -1,0 +1,123 @@
+##################################################
+##
+##  SMIL MODULES
+##
+
+##  REDIS REPLICATION GROUPS / CLUSTERS
+module "smil-redis" {
+  source                      = "../../site-modules/smil/redis/0.1.0"
+  name                        = "smil-redis"
+  subnet_group_octet          = "${var.subnet_group_octets["smil-redis"]}"
+  repl_group_count_az0        = "2"
+  repl_group_count_az1        = "2"
+  repl_group_count_az2        = "0"
+  node_type                   = "cache.t3.medium"
+  env_strings                 = "${local.env_strings}"
+  base_strings                = "${local.base_strings}"
+  vpc_strings                 = "${local.vpc-main_strings}"
+  vpc_lists                   = "${local.vpc-main_lists}"
+  az_count                    = "${var.vpc-main_az_count}"
+  bastion_sg_id               = "${module.bastion.sg_id}"
+  tags                        = "${local.tags}"
+}
+output "smil-redis_endpoints_az0"  { value = "${module.smil-redis.endpoint_cnames_short_az0}" }
+output "smil-redis_endpoints_az1"  { value = "${module.smil-redis.endpoint_cnames_short_az1}" }
+output "smil-redis_endpoints_az2"  { value = "${module.smil-redis.endpoint_cnames_short_az2}" }
+
+##  WORKER INSTANCE CLUSTER
+module "smil-worker" {
+  source                      = "../../site-modules/smil/worker/0.1.0"
+  name                        = "smil-worker"
+  subnet_group_octet          = "${var.subnet_group_octets["smil-worker"]}"
+  instance_count_az0          = "4"
+  instance_count_az1          = "4"
+  instance_count_az2          = "0"
+  instance_type               = "t3.medium"
+  env_strings                 = "${local.env_strings}"
+  az_count                    = "${var.vpc-main_az_count}"
+  base_strings                = "${local.base_strings}"
+  vpc_strings                 = "${local.vpc-main_strings}"
+  vpc_lists                   = "${local.vpc-main_lists}"
+  chef_strings                = "${local.chef_strings}"
+  chef_lists                  = "${local.chef_lists}"
+  chef_iam_policy_count       = "${module.chef.iam_policy_count}"
+  terraform_strings           = "${local.terraform_strings}"
+  tags                        = "${local.tags}"
+}
+output "smil-workers_az0" { value = "${module.smil-worker.internal_cnames_long_az0}" }
+output "smil-workers_az1" { value = "${module.smil-worker.internal_cnames_long_az1}" }
+output "smil-workers_az2" { value = "${module.smil-worker.internal_cnames_long_az2}" }
+output "smil-workers_all" { value = "${module.smil-worker.internal_cnames_long_all}" }
+
+##  SMIL MANAGER INSTANCE CLUSTER
+module "smil-manager" {
+  source                      = "../../site-modules/smil/manager/0.1.0"
+  name                        = "smil-manager"
+  subnet_group_octet          = "${var.subnet_group_octets["smil-manager"]}"
+  instance_count_az0          = "4"
+  instance_count_az1          = "4"
+  instance_count_az2          = "0"
+  instance_type               = "t3.medium"
+  env_strings                 = "${local.env_strings}"
+  az_count                    = "${var.vpc-main_az_count}"
+  base_strings                = "${local.base_strings}"
+  vpc_strings                 = "${local.vpc-main_strings}"
+  vpc_lists                   = "${local.vpc-main_lists}"
+  chef_strings                = "${local.chef_strings}"
+  chef_lists                  = "${local.chef_lists}"
+  chef_iam_policy_count       = "${module.chef.iam_policy_count}"
+  terraform_strings           = "${local.terraform_strings}"
+  tags                        = "${local.tags}"
+}
+output "smil-managers_az0" { value = "${module.smil-manager.internal_cnames_long_az0}" }
+output "smil-managers_az1" { value = "${module.smil-manager.internal_cnames_long_az1}" }
+output "smil-managers_az2" { value = "${module.smil-manager.internal_cnames_long_az2}" }
+output "smil-managers_all" { value = "${module.smil-manager.internal_cnames_long_all}" }
+
+
+##  MAIN NLB-HAPROXY STACK
+module "smil-net-main" {
+  source                      = "../../site-modules/smil/net-main/0.1.0"
+  name                        = "smil-net-main"
+  subnet_group_octet_nlb      = "${var.subnet_group_octets["smil-net-main-nlb"]}"
+  subnet_group_octet_haproxy  = "${var.subnet_group_octets["smil-net-main-haproxy"]}"
+  stream_443                  = {
+    nlb_port                  = "443"
+    haproxy_port              = "443"
+    backend_sg_id             = "${module.smil-manager.sg_id}"
+    backend_port              = "9090"
+    tg_healthy_threshold      = "5"
+    tg_unhealthy_threshold    = "1"
+    tg_interval               = "60"
+  }
+  #stream2                     = {
+    #nlb_port                  = "443"
+    #haproxy_port              = "80443"
+    #backend_sg_id             = "${module.cluster2.sg_id}"
+    #backend_port              = "80"
+  #}
+  base_strings                = "${local.base_strings}"
+  env_strings                 = "${local.env_strings}"
+  chef_strings                = "${local.chef_strings}"
+  chef_lists                  = "${local.chef_lists}"
+  terraform_strings           = "${local.terraform_strings}"
+  vpc_strings                 = "${local.vpc-main_strings}"
+  vpc_lists                   = "${local.vpc-main_lists}"
+  az_count                    = "${var.vpc-main_az_count}"
+  chef_iam_policy_count       = "${module.chef.iam_policy_count}"
+  tags                        = "${local.tags}"
+}
+##  FOR DEBUGGING CONVENIENCE
+output "smil-net_nlb_cname"                 { value = "${module.smil-net.nlb_cname}" }
+output "smil-net_stream1_nlb_port"          { value = "${module.smil-net.stream1_nlb_port}" }
+output "smil-net_stream2_nlb_port"          { value = "${module.smil-net.stream2_nlb_port}" }
+
+##  STREAM1 HAPROXY PARAMETERS - CONSUMED BY "NLBHAP" CHEF SITE-COOKBOOK TO CONFIGURE HAPROXY
+output "smil-net_stream1_haproxy_port"      { value = "${module.smil-net.stream1_haproxy_port}" }
+output "smil-net_stream1_backend_port"      { value = "${module.smil-net.stream1_backend_port}" }
+output "smil-net_stream1_backend_host_list" { value = [ "${module.cluster1.internal_cnames}" ] }
+
+##  STREAM2 HAPROXY PARAMETERS - CONSUMED BY "NLBHAP" CHEF SITE-COOKBOOK TO CONFIGURE HAPROXY
+output "smil-net_stream2_haproxy_port"      { value = "${module.smil-net.stream2_haproxy_port}" }
+output "smil-net_stream2_backend_port"      { value = "${module.smil-net.stream2_backend_port}" }
+output "smil-net_stream2_backend_host_list" { value = [ "${module.cluster2.internal_cnames}" ] }

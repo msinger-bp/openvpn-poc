@@ -1,0 +1,6 @@
+# /etc/sudoers.d/sysadmin
+# last edit 2019 May 29
+# installed by chef
+
+%sysadmin ALL=(ALL) NOPASSWD:ALL
+

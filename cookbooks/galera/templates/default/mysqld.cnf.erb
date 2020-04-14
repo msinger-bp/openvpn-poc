@@ -1,0 +1,72 @@
+[mysqld]
+
+##  SERVER SYSTEM
+open_files_limit=<%= node['galera']['open_files_limit'] %>
+
+##  NETWORK
+bind-address=<%= node['ipaddress'] %>
+
+##  PROCESS MGMT
+socket=/var/run/mysqld/mysqld.sock
+pid-file=/var/run/mysqld/mysqld.pid
+
+##  DATA DIR
+datadir=<%= node['galera']['data_dir'] %>
+
+##  TMP DIR
+tmpdir=<%= node['galera']['tmp_dir'] %>
+
+##  ERROR LOG
+log-error=<%=           node['galera']['error_log']['path'] %>
+log_error_verbosity=<%= node['galera']['error_log']['verbosity'] %>
+
+##  SLOW QUERY LOG
+slow_query_log=<%=                node['galera']['slow_query_log']['enable'] %>
+slow_query_log_file=<%=           node['galera']['slow_query_log']['path'] %>
+long_query_time=<%=               node['galera']['slow_query_log']['long_query_time'] %>
+log_queries_not_using_indexes=<%= node['galera']['slow_query_log']['log_queries_not_using_indexes'] %>
+
+##  DISABLING SYMBOLIC-LINKS IS RECOMMENDED TO PREVENT ASSORTED SECURITY RISKS
+symbolic-links=0
+
+##  BINLOG
+log_slave_updates
+log-bin=<%=           node['galera']['binlog_dir'] %>/log.index
+sync_binlog=<%=       node['galera']['sync_binlog'] %>
+expire_logs_days=<%=  node['galera']['expire_logs_days'] %>
+binlog_format=ROW
+
+##  CONNECTIONS
+max_allowed_packet=<%= node['galera']['max_allowed_packet'] %>
+max_connections=<%= node['galera']['max_connections'] %>
+max_connect_errors=<%= node['galera']['max_connect_errors'] %>
+
+##  INNODB
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+innodb_flush_log_at_trx_commit=<%= node['galera']['innodb_flush_log_at_trx_commit'] %>
+innodb_lock_wait_timeout=<%= node['galera']['innodb_lock_wait_timeout'] %>
+innodb_log_buffer_size=<%= node['galera']['innodb_log_buffer_size'] %>
+innodb_log_file_size=<%= node['galera']['innodb_log_file_size'] %>
+innodb_thread_concurrency=<%= node['galera']['innodb_thread_concurrency'] %>
+innodb_flush_method=<%= node['galera']['innodb_flush_method'] %>
+innodb_autoextend_increment=<%= node['galera']['innodb_autoextend_increment'] %>
+innodb_buffer_pool_size=<%= ( ( @node['memory']['total'].gsub(/[^0-9]/,'').to_i / 1024 ) * ( @node['galera']['innodb_buffer_pool_ram_pct'].to_f / 100 ) ).to_i.to_s  + 'M' %>
+
+##  EVENT SCHEDULER
+event_scheduler=<%= node['galera']['event_scheduler'] %>
+
+##  TRANSACTION ISOLATION MODE
+transaction_isolation=<%= node['galera']['transaction_isolation'] %>
+
+##  MISC
+character_set_server=<%= node['galera']['character_set_server'] %>
+sort_buffer_size=<%= node['galera']['sort_buffer_size'] %>
+join_buffer_size=<%= node['galera']['join_buffer_size'] %>
+table_open_cache=<%= node['galera']['table_open_cache'] %>
+tmp_table_size=<%= node['galera']['tmp_table_size'] %>
+max_heap_table_size=<%= node['galera']['max_heap_table_size'] %>
+collation_server=<%= node['galera']['collation_server'] %>
+group_concat_max_len=<%= node['galera']['group_concat_max_len'] %>
+query_alloc_block_size=<%= node['galera']['query_alloc_block_size'] %>
+

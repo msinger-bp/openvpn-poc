@@ -1,0 +1,9 @@
+{
+    "name": "ops",
+    "json_class": "Chef::Role",
+    "description": "Bootstrap Role",
+    "run_list": [ "recipe[bootstrap::default]" ],
+    "default_attributes": { },
+    "override_attributes": { },
+    "chef_type": "role"
+}

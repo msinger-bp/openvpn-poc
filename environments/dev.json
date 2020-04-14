@@ -1,0 +1,17 @@
+{
+  "name": "dev",
+  "json_class": "Chef::Environment",
+  "description": "Staging Environment",
+  "cookbook_versions": {},
+  "default_attributes": {
+    "environment_name": "dev-mdoty",
+    "env_flags": {
+      "devs_have_sudo": false,
+      "is_production": true
+    },
+    "monitoring": {
+      "external_fqdn": "some.dev.fqdn.com"
+    }
+  },
+ "chef_type": "environment"
+}

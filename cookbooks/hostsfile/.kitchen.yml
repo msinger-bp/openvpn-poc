@@ -1,0 +1,36 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  deprecations_as_errors: true
+
+platforms:
+  - name: amazon-linux
+    driver_config:
+      box: mvbcoding/awslinux
+  - name: centos-6.9
+  - name: centos-7.3
+  - name: debian-7.11
+  - name: debian-8.9
+  - name: debian-9.1
+  - name: fedora-26
+  - name: opensuse-leap-42.3
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+
+suites:
+  - name: append
+    run_list: test::append
+  - name: append_existing
+    run_list: test::append_existing
+  - name: create
+    run_list: test::create
+  - name: create_if_missing
+    run_list: test::create_if_missing
+  - name: default
+    run_list: test::default
+  - name: options
+    run_list: test::options
+  - name: unique
+    run_list: test::unique

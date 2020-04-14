@@ -1,0 +1,18 @@
+##  EFS
+##
+##  CREATES A SINGLE EFS VOLUME
+##
+
+module "efs" {
+  source                                = "../../site-modules/efs/0.1.0"
+  name                                  = "efs"
+  env_strings                           = "${local.env_strings}"
+  base_strings                          = "${local.base_strings}"
+  vpc_strings                           = "${local.vpc-main_strings}"
+  vpc_lists                             = "${local.vpc-main_lists}"
+  az_count                              = "${var.vpc-main_az_count}"
+  tags                                  = "${local.tags}"
+  subnet_group_octet                    = "${var.subnet_group_octets["efs"]}"
+}
+
+output "efs_vol_mount_target" { value = "${module.efs.efs-vol_mount_target_dns_names[0]}" }

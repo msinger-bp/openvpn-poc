@@ -1,0 +1,26 @@
+* ACM PCA
+
+  * DISABLED BECAUSE THEY ARE TOO EXPENSIVE
+
+  * PROCEDURE TO SIGN ENVIRONMENT SUBORDINATE PCA (ACM PRIVATE CERTIFICATE AUTHORITY) WITH ROOT CA KEY
+
+    * IF YOUR ENVIRONMENT INCLUDES A SUBORDINATE PCA (LIKE THE REFERENCE ENV), YOU MUST SIGN IT
+    WITH THE ROOT PCA KEY BEFORE YOU CAN ISSUE PRIVATE ACM CERTS
+
+    1. Log in to AWS ACM Console, "Private CAs" section
+    2. Select the Private CA that was created for your environment
+       * it should be "Type: Subordinate" and "Status: Pending Certificate"
+    3. Select "Actions / Install CA Certificate"
+    4. Select "ACM Private CA / Next"
+    5. Under "Parent private CA", select the appropriate root PCA
+    6. Change "Validity" to 20 years, leave other options as-is, Next...
+    7. Review and press "Generate"
+    8. You should see a confirmation message like:
+          "Success!  Your CA certificate was installed successfully.  The status of this CA is active
+          and able to issue private certificates."
+       And the subordinate PCA Status should change to "Active"
+
+  * DESTROY ENVIRONMENT WITH ACM PCA
+
+    * In order to destroy/delete an ACM PCA, you must first "disable" it. This can be done from the console.
+

@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus Alertmanager
+After=network.target
+
+[Service]
+User=<%= node['prometheus']['user'] %>
+Group=<%= node['prometheus']['group'] %>
+ExecStart=<%= @am_binary %> --log.level=debug <%= @flags %>
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,392 @@
+#===
+# dirs, files, including certs
+
+#directory '/var/lib/haproxy' do
+#  owner 'haproxy'
+#  group 'haproxy'
+#  mode '0755'
+#end
+
+directory '/var/lib/haproxy/dev' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+directory '/etc/haproxy' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+directory '/etc/haproxy/ssl' do
+  owner 'root'
+  group 'haproxy'
+  mode '0640'
+end
+
+cookbook_file "/etc/haproxy/ssl/legacy-bridges.pem" do
+  source "legacy-bridges.pem"
+  mode '0640'
+  owner 'root'
+  group 'haproxy'
+end
+
+cookbook_file "/etc/haproxy/ssl/legacy-cameras.pem" do
+  source "legacy-cameras.pem"
+  mode '0640'
+  owner 'root'
+  group 'haproxy'
+end
+
+cookbook_file "/etc/haproxy/ssl/legacy-xxl-star.mynexia.com.pem" do
+  source "legacy-xxl-star.mynexia.com.pem"
+  mode '0640'
+  owner 'root'
+  group 'haproxy'
+end
+
+cookbook_file "/etc/haproxy/ssl/#{node['env']['web_ssl_pem']}" do
+  #source "2020-star.mynexia.com.pem"
+  mode '0640'
+  owner 'root'
+  group 'haproxy'
+end
+
+cookbook_file "/etc/haproxy/ssl/#{node['env']['internal_root_ca_file']}" do
+  #source "demo-ca-root.crt.pem"
+  mode '0640'
+  owner 'root'
+  group 'haproxy'
+end
+
+#link "/etc/haproxy/ssl/internal-ca-root.crt.pem" do
+#  to "/etc/haproxy/ssl/#{node['haproxy-oldssl']['internal-root-crt']}"
+#end
+
+#===
+# node search and format server lines
+
+# are not doing az-specific targets at this time
+#region_az = node['ec2']['placement_availability_zone']
+#region_az =~ /(.)$/
+#az_letter = Regexp.last_match[1]
+
+#---
+# camman
+
+def targetnode_to_map_cam(targetnode)
+  { :ip => targetnode[:ipaddress],
+    :host => targetnode[:hostname]
+  }
+end
+
+#camman_servers = search(:node, %Q{role:"camera_manager" AND name:"*-az#{az_letter}*"}).map(&method(:node_to_map_cam))
+camman_servers = search(:node, 'role:camera_manager').map(&method(:targetnode_to_map_cam))
+#camman_servers = search(:node, %Q{name:camman-az#{az_letter}*}).map(&method(:node_to_map_cam))
+
+def camman_server_line(targetnode)
+  #"server #{node[:host]} #{node[:ip]}:8859 check inter 5000 rise 2 fall 7 maxconn 30000"
+  "server #{targetnode[:host]} #{targetnode[:ip]}:9859 weight 10 check inter 5000 rise 2 fall 7 maxconn 30000 ssl verify required ca-file /etc/haproxy/ssl/#{node['env']['internal_root_ca_file']} verifyhost smil-internal.nexia.secure"
+end
+
+camman_server_lines = camman_servers.map(&method(:camman_server_line)).sort
+
+#---
+# devman
+
+def targetnode_to_map_dev(targetnode)
+  { :ip => targetnode[:ipaddress],
+    :host => targetnode[:hostname]
+  }
+end
+
+#camman_servers = search(:node, %Q{role:"camera_manager" AND name:"*-az#{az_letter}*"}).map(&method(:node_to_map_cam))
+devman_servers = search(:node, 'role:device_manager').map(&method(:targetnode_to_map_dev))
+#camman_servers = search(:node, %Q{name:camman-az#{az_letter}*}).map(&method(:node_to_map_cam))
+
+def devman_server_line(targetnode)
+  #"server #{node[:host]} #{node[:ip]}:8879 check inter 5000 rise 2 fall 7 maxconn 30000"
+  "server #{targetnode[:host]} #{targetnode[:ip]}:9879 weight 10 check inter 5000 rise 2 fall 7 maxconn 30000 ssl verify required ca-file /etc/haproxy/ssl/#{node['env']['internal_root_ca_file']} verifyhost smil-internal.nexia.secure slowstart 10m"
+end
+
+devman_server_lines = devman_servers.map(&method(:devman_server_line)).sort
+
+#---
+# smil-module
+
+def targetnode_to_map_smil(targetnode)
+  { :ip => targetnode[:ipaddress],
+    :host => targetnode[:hostname]
+  }
+end
+
+smil_mod_servers = search(:node, 'role:smil_module').map(&method(:targetnode_to_map_smil))
+
+# note that 9091 is a hack for QA -- it should be 9090 to hit the internal haproxy port
+def smil_server_line(targetnode)
+	"server #{targetnode[:host]} #{targetnode[:ip]}:9090 weight 10 check inter 5000 rise 2 fall 7 maxconn 30000 ssl verify required ca-file /etc/haproxy/ssl/#{node['env']['internal_root_ca_file']} verifyhost smil-internal.nexia.secure slowstart 10m"
+end
+
+#smil_server_lines = smil_mod_servers.map(&method(:smil_server_line)).sort
+smil_server_lines = node['ref-haproxy-legacy']['smil-managers_all']
+
+
+#---
+# web 80 and 443
+
+def targetnode_to_map_web(targetnode)
+  { :ip => targetnode[:ipaddress],
+    :host => targetnode[:hostname]
+  }
+end
+
+web_servers = search(:node, 'role:nexia-home-application-web').map(&method(:targetnode_to_map_web))
+
+def web_80_server_line(targetnode)
+	"server #{targetnode[:host]} #{targetnode[:ip]}:80 check inter 5 fall 10000 rise 1"
+end
+
+def web_443_server_line(targetnode)
+	"server #{targetnode[:host]} #{targetnode[:ip]}:443 check inter 5 fall 10000 rise 1 ssl verify none"
+end
+
+web_80_server_lines = web_servers.map(&method(:web_80_server_line)).sort
+web_443_server_lines = web_servers.map(&method(:web_443_server_line)).sort
+
+#===
+# config file sections
+
+#---
+# global
+
+haproxy_global "ga-log" do
+  directive "log"
+  value "/dev/log   local0"
+end
+
+haproxy_global "gb-log" do
+  directive "log"
+  value "/dev/log   local1 notice"
+end
+
+haproxy_global "gc-maxconn" do
+  directive "maxconn"
+  value "400000"
+end
+
+haproxy_global "gd-user" do
+  directive "user"
+  value "haproxy"
+end
+
+haproxy_global "ge-group" do
+  directive "group"
+  value "haproxy"
+end
+
+haproxy_global "gf-stats" do
+  directive "stats"
+  value "socket /var/run/haproxy.sock user haproxy group haproxy"
+end
+
+haproxy_global "gg-stats" do
+  directive "stats"
+  value "socket /var/run/haproxy_admin.sock mode 600 level admin"
+end
+
+haproxy_global "gh-ssl-default-bind-ciphers" do
+  directive "ssl-default-bind-ciphers"
+  value "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS"
+end
+
+haproxy_global "gi-ssl-default-bind-options" do
+  directive "ssl-default-bind-options"
+  value "no-tls-tickets ssl-min-ver SSLv3 ssl-max-ver TLSv1.3"
+end
+
+haproxy_global "gj-ssl-default-server-ciphers" do
+  directive "ssl-default-server-ciphers"
+  value "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS"
+end
+
+haproxy_global "gk-ssl-default-server-options" do
+  directive "ssl-default-server-options"
+  value "no-tls-tickets"
+end
+
+haproxy_global "gl-stats" do
+  directive "stats"
+  value "timeout 30s"
+end
+
+haproxy_global "gm-tun.ssl.default-dh-param" do
+  directive "tune.ssl.default-dh-param"
+  value "2048"
+end
+
+#---
+# defaults
+
+haproxy_default "log" do
+  directive "log"
+  value "global"
+end
+
+haproxy_default "mode" do
+  directive "mode"
+  value "tcp"
+end
+
+haproxy_default "retries" do
+  directive "retries"
+  value "3"
+end
+
+haproxy_default "timeout-client" do
+  directive "timeout client"
+  value "3h"
+end
+
+haproxy_default "timeout-connect" do
+  directive "timeout connect"
+  value "50s"
+end
+
+haproxy_default "timeout-server" do
+  directive "timeout server"
+  value "2h"
+end
+
+haproxy_default "option-dontlognull" do
+  directive "option dontlognull"
+end
+
+haproxy_default "option-redispatch" do
+  directive "option redispatch"
+end
+
+haproxy_default "option-tcpka" do
+  directive "option tcpka"
+end
+
+haproxy_default "option-tcplog" do
+  directive "option tcplog"
+end
+
+haproxy_default "balance" do
+  directive "balance"
+  value "leastconn"
+end
+
+#---
+# listeners / frontends
+
+haproxy_listen "admin" do
+  lines [
+         "bind 0.0.0.0:8009",
+         "mode http",
+         "stats uri /",
+         "stats realm HAProxy\ Statistics",
+         "stats hide-version",
+         "stats auth admin:nex1a$tats"
+        ]
+end
+
+haproxy_frontend "cameras-nexia-8859" do
+  lines [
+         "bind 0.0.0.0:8859 ssl crt /etc/haproxy/ssl/legacy-cameras.pem",
+         "maxconn 150000",
+         "default_backend cameras-be"
+        ]
+end
+
+haproxy_frontend "bridges-nexia-8879" do
+  lines [
+         "bind 0.0.0.0:8879 ssl crt /etc/haproxy/ssl/legacy-bridges.pem",
+         "maxconn 150000",
+         "default_backend bridges-be"
+        ]
+end
+
+haproxy_frontend "smil-nexia-8090-ssltermination" do
+  lines [
+         "bind 0.0.0.0:8090 ssl crt /etc/haproxy/ssl/legacy-xxl-star.mynexia.com.pem",
+         "maxconn 150000",
+         "option tcpka",
+         "default_backend smil-be"
+        ]
+end
+
+haproxy_frontend "web-nexia-80" do
+  lines [
+         "bind 0.0.0.0:80",
+         "maxconn 150000",
+         "default_backend web-nexia-be-80",
+         "mode http"
+        ]
+end
+
+haproxy_frontend "web-nexia-443" do
+  lines [
+         "bind 0.0.0.0:443 ssl crt /etc/haproxy/ssl/#{node['env']['web_ssl_pem']}",
+         "maxconn 150000",
+         "default_backend web-nexia-be-443",
+         "mode http"
+        ]
+end
+
+#---
+
+# backends
+
+haproxy_backend "cameras-be" do
+  camman_server_lines << "fullconn 250000"
+  lines camman_server_lines
+end
+
+haproxy_backend "bridges-be" do
+  devman_server_lines << "fullconn 250000"
+  lines devman_server_lines
+end
+
+haproxy_backend "smil-be" do
+  smil_server_lines << "fullconn 250000"
+  lines smil_server_lines
+end
+##  SHOULD PRODUCE:
+##  ---------------
+##  backend smil-be
+##    server smil-module-aza00 10.201.55.21:9090 weight 10 check inter 5000 rise 2 fall 7 maxconn 30000 ssl verify required ca-file /etc/haproxy/ssl/demo-ca-root.crt.pem verifyhost smil-internal.nexia.secure
+##    fullconn 250000
+
+haproxy_backend "web-nexia-be-80" do
+  web_80_server_lines << "fullconn 250000"
+  web_80_server_lines << "mode http"
+  lines web_80_server_lines
+end
+
+haproxy_backend "web-nexia-be-443" do
+  web_443_server_lines << "fullconn 250000"
+  web_443_server_lines << "mode http"
+  lines web_443_server_lines
+end
+
+##  LOGGING
+
+cookbook_file "/etc/rsyslog.d/49-haproxy.conf" do
+  source "49-haproxy.conf"
+  mode '0644'
+  owner 'root'
+  group 'root'
+end
+
+cookbook_file "/etc/logrotate.d/haproxy" do
+  source "logrotate-haproxy"
+  mode '0644'
+  owner 'root'
+  group 'root'
+end
+
+# TO DO add rsyslog restart?
+

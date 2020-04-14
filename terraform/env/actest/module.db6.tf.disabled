@@ -1,0 +1,32 @@
+##  INVOCATION OF COMPLEX RDS-AURORA THREE-INSTANCE MYSQL 5.7 CLUSTER
+##    * CUSTOM INSTANCE AND CLUSTER PARAMETERS
+##    * CUSTOM CREDENTIALS
+module "db6" {
+  source                  = "../../site-modules/aurora-mysql/0.1.0"
+  name                    = "db6"
+  instance_count          = "3"
+  instance_class          = "db.r5.large"
+  subnet_group_octet      = "${var.subnet_group_octets["db6"]}"
+  instance_parameters = [
+    { name = "slow_query_log",  value = "1" },
+    { name = "long_query_time", value = "5" }
+  ]
+  cluster_parameters = [
+    { name = "character_set_client", value = "utf8" },
+    { name = "character_set_server", value = "utf8" }
+  ]
+  admin_username          = "appadmin"
+  admin_password          = "password"
+  env_strings             = "${local.env_strings}"
+  base_strings            = "${local.base_strings}"
+  vpc_strings             = "${local.vpc-main_strings}"
+  vpc_lists               = "${local.vpc-main_lists}"
+  az_count                = "${var.vpc-main_az_count}"
+  tags                    = "${local.tags}"
+}
+output "db6_id"              { value = "${module.db6.id}" }
+output "db6_arn"             { value = "${module.db6.arn}" }
+output "db6_endpoint"        { value = "${module.db6.endpoint}" }
+output "db6_admin_password"  { value = "${module.db6.admin_password}" }
+output "db6_admin_username"  { value = "${module.db6.admin_username}" }
+output "db6_reader_endpoint" { value = "${module.db6.reader_endpoint}" }

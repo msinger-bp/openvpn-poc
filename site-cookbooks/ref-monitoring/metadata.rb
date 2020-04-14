@@ -1,0 +1,17 @@
+name              'ref-monitoring'
+maintainer        'BitPusher, LLC'
+maintainer_email  'ops@bitpusher.com'
+license           'Apache 2.0'
+description       'Installs/Configures Nagios'
+version           '0.1.0'
+supports          'ubuntu', '>= 14.04'
+
+depends 'prometheus_clients'
+depends 'prometheus'
+depends 'grafana'
+depends 'nagios'
+depends 'nrpe'
+depends 'docker'
+
+#depends 'apt'
+#depends 'apache2'

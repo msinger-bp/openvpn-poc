@@ -1,0 +1,12 @@
+{
+    "name": "ops",
+    "json_class": "Chef::Role",
+    "description": "prom monitoriing",
+    "description": "Ops Role",
+    "run_list": [ "recipe[ref_ops::default]" ],
+    "default_attributes": {
+      "base_role": "ops"
+    },
+    "override_attributes": { },
+    "chef_type": "role"
+}

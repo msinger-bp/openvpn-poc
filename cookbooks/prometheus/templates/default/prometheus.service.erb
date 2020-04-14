@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus
+After=network.target auditd.service
+
+[Service]
+Type=simple
+User=<%= node['prometheus']['user'] %>
+Group=<%= node['prometheus']['group'] %>
+ExecStart=<%= @prom_binary %> <%= @flags %>
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

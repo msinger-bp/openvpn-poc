@@ -1,0 +1,5 @@
+{
+  "id": "bastion_dummy",
+  "hostgroup_name": "bastions",
+  "command_line": "$USER1$/check_dummy $HOSTADDRESS$"
+}

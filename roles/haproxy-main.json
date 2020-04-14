@@ -1,0 +1,9 @@
+{
+    "name": "haproxy-main",
+    "json_class": "Chef::Role",
+    "description": "haproxy-main role",
+    "run_list": [ "recipe[ref-haproxy-main::default]" ],
+    "default_attributes": { },
+    "override_attributes": { },
+    "chef_type": "role"
+}

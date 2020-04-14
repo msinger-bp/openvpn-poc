@@ -1,0 +1,46 @@
+resource "aws_kms_key" "ebs-volumes" {
+  description             = "${local.org-env-name}"
+  tags                    = "${local.tags_w_name}"
+}
+module "ebs_volumes_az0" {
+  source                  = "./ebs-vols"
+  name                    = "${var.name}"
+  instance_count          = "${var.instance_count_az0}"
+  instance_ids            = "${module.cluster.az_0_instance_ids}"
+  kms_key_arn             = "${aws_kms_key.ebs-volumes.arn}"
+  az                      = "${element(var.vpc_lists["availability_zones"],0)}"
+  data_volume_type        = "${var.data_volume_type}"
+  data_volume_iops        = "${var.data_volume_iops}"
+  data_volume_size        = "${var.data_volume_size}"
+  data_volume_mount_point = "${var.env_strings["ebs_vol_mount_root"]}/data"
+  env_strings             = "${var.env_strings}"
+  tags                    = "${var.tags}"
+}
+module "ebs_volumes_az1" {
+  source                  = "./ebs-vols"
+  name                    = "${var.name}"
+  instance_count          = "${var.instance_count_az1}"
+  instance_ids            = "${module.cluster.az_1_instance_ids}"
+  kms_key_arn             = "${aws_kms_key.ebs-volumes.arn}"
+  az                      = "${element(var.vpc_lists["availability_zones"],1)}"
+  data_volume_type        = "${var.data_volume_type}"
+  data_volume_iops        = "${var.data_volume_iops}"
+  data_volume_size        = "${var.data_volume_size}"
+  data_volume_mount_point = "${var.env_strings["ebs_vol_mount_root"]}/data"
+  env_strings             = "${var.env_strings}"
+  tags                    = "${var.tags}"
+}
+module "ebs_volumes_az2" {
+  source                  = "./ebs-vols"
+  name                    = "${var.name}"
+  instance_count          = "${var.instance_count_az2}"
+  instance_ids            = "${module.cluster.az_2_instance_ids}"
+  kms_key_arn             = "${aws_kms_key.ebs-volumes.arn}"
+  az                      = "${element(var.vpc_lists["availability_zones"],2)}"
+  data_volume_type        = "${var.data_volume_type}"
+  data_volume_iops        = "${var.data_volume_iops}"
+  data_volume_size        = "${var.data_volume_size}"
+  data_volume_mount_point = "${var.env_strings["ebs_vol_mount_root"]}/data"
+  env_strings             = "${var.env_strings}"
+  tags                    = "${var.tags}"
+}

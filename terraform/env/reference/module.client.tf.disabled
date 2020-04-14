@@ -1,0 +1,23 @@
+##  CLIENT NLB-HAPROXY-ASG CLUSTER
+#module "client" {
+  #source                                    = "../../site-modules/client/0.0.1-flux"
+  #name                                      = "client"
+  #tags                                      = "${local.tags}"
+  #app_alb_subnet_group_octet                = "110"
+  #nlb_subnet_group_octet                    = "111"
+  #app-instances_subnet_group_octet          = "112"
+  #haproxy-instances_subnet_group_octet      = "113"
+  #haproxy-instances_listen_port             = "80"
+  #haproxy-instances_ami_id                  = "${module.base.ami_ubuntu}"
+  #haproxy-instances_type                    = "t3.nano"
+  #haproxy-instances_asg_min_size            = "3"
+  #haproxy-instances_asg_max_size            = "3"
+  #haproxy-instances_asg_desired_size        = "3"
+  #app-instances_listen_port                 = "80"
+  #app-instances_ami_id                      = "${module.base.ami_ubuntu}"
+  #app-instances_type                        = "t3.nano"
+  #app-instances_asg_min_size                = "3"
+  #app-instances_asg_max_size                = "3"
+  #app-instances_asg_desired_size            = "3"
+#}
+##output "client_nlb_cname"                      { value = "${module.client.nlb_cname}" }

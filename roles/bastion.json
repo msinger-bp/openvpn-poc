@@ -1,0 +1,9 @@
+{
+    "name": "bastion",
+    "json_class": "Chef::Role",
+    "description": "bastion role",
+    "run_list": [ "recipe[ref-bastion::default]" ],
+    "default_attributes": { },
+    "override_attributes": { },
+    "chef_type": "role"
+}

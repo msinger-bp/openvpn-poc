@@ -1,0 +1,32 @@
+##################################################
+##
+##  LEGACY NLB
+##
+
+##  MAIN NLB-HAPROXY STACK
+module "nlb-legacy" {
+  source                        = "../../site-modules/nlb-legacy/0.1.0"
+  name                          = "nlb-legacy"
+  subnet_group_octet            = "${var.subnet_group_octets["nlb-legacy"]}"
+  ##  TARGET GROUP ARNS FOR LISTENER RULES
+  haproxy-legacy_tg_8090-1_arn  = "${module.haproxy-legacy.tg-8090-1_arn}"
+  base_strings                  = "${local.base_strings}"
+  env_strings                   = "${local.env_strings}"
+  chef_strings                  = "${local.chef_strings}"
+  chef_lists                    = "${local.chef_lists}"
+  terraform_strings             = "${local.terraform_strings}"
+  vpc_strings                   = "${local.vpc-main_strings}"
+  vpc_lists                     = "${local.vpc-main_lists}"
+  az_count                      = "${var.vpc-main_az_count}"
+  chef_iam_policy_count         = "${module.chef.iam_policy_count}"
+  tags                          = "${local.tags}"
+}
+##  FOR DEBUGGING CONVENIENCE
+#output "smil-net-main_nlb_cname"                    { value = "${module.smil-net-main.nlb_cname}" }
+#output "smil-net-main_stream-443_nlb_port"          { value = "443" }
+
+##  STREAM-443 HAPROXY PARAMETERS - CONSUMED BY "ref-smil-net-main-haproxy" CHEF SITE-COOKBOOK TO CONFIGURE HAPROXY
+#output "smil-net-main_stream-443_haproxy_port"      { value = "443" }
+#output "smil-net-main_stream-443_backend_port"      { value = "443" }
+#output "smil-net-main_stream-443_backend_host_list" { value = [ "${module.smil-net-main.internal_cnames}" ] }
+

@@ -1,0 +1,11 @@
+{
+    "name": "appdb",
+    "json_class": "Chef::Role",
+    "description": "appdb",
+    "run_list": [ ],
+    "default_attributes": { 
+      "user_recipes": [ ]
+    },
+    "override_attributes": { },
+    "chef_type": "role"
+}

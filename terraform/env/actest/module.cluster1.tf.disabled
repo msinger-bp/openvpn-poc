@@ -1,0 +1,24 @@
+##  CLUSTER 1
+##
+##    * 'cluster.private' LIBRARY MODULE TO CREATE A SIMPLE CLUSTER OF EC2 INSTANCES
+##    * ALSO USES 'ebs-vol-attach' LIBRARY MODULE TO CREATE AND ATTACH EBS VOLUMES
+##
+
+module "cluster1" {
+  source                = "../../site-modules/cluster1/0.3.2"
+  name                  = "cluster1"
+  subnet_group_octet    = "${var.subnet_group_octets["cluster1"]}"
+  instance_count        = "${var.vpc-main_az_count}" ##  ONE PER AZ
+  instance_type         = "c5d.large" ##  TO SUPPORT NVME LOCAL/EPHEMERAL SSD VOLUMES
+  env_strings           = "${local.env_strings}"
+  az_count              = "${var.vpc-main_az_count}"
+  base_strings          = "${local.base_strings}"
+  vpc_strings           = "${local.vpc-main_strings}"
+  vpc_lists             = "${local.vpc-main_lists}"
+  chef_strings          = "${local.chef_strings}"
+  chef_lists            = "${local.chef_lists}"
+  chef_iam_policy_count = "${module.chef.iam_policy_count}"
+  terraform_strings     = "${local.terraform_strings}"
+  tags                  = "${local.tags}"
+}
+output "cluster1_internal_cnames"           { value = "${module.cluster1.internal_cnames}" }

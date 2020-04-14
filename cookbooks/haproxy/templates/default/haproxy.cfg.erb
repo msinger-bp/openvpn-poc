@@ -1,0 +1,58 @@
+### THIS FILE IS MANAGED BY CHEF!!! ALL CHANGES WILL BE SPORKED!!!
+
+global
+<% @globals.sort{|a,b| a[:directive] <=> b[:directive]}.each do |opt| -%>
+  <% if opt.key?(:comment) -%>
+  #<%= opt[:comment] %>
+  <% end -%>
+  <% opt[:value].each do |v| -%>
+  <%= opt[:directive] %> <%= v %>
+  <% end -%>
+<% end -%>
+
+defaults
+<% @defaults.sort{|a,b| a[:directive] <=> b[:directive]}.each do |opt| -%>
+  <% if opt.key?(:comment) -%>
+  #<%= opt[:comment] %>
+  <% end -%>
+  <% opt[:value].each do |v| -%>
+    <% if v == false -%>
+  no <%= opt[:directive] %>
+    <% else -%>
+  <%= opt[:directive] %> <%= v %>
+    <% end -%>
+  <% end -%>
+<% end -%>
+
+<% @listeners.sort{|a,b| a[:name] <=> b[:name]}.each do |stanza| -%>
+<% if stanza.key?(:comment) -%>
+#<%= stanza[:comment] %>
+<% end -%>
+listen <%= stanza[:name] %>
+  <% stanza[:lines].each do |l| -%>
+  <%= l %>
+  <% end -%>
+
+<% end -%>
+<% @front_ends.sort{|a,b| a[:name] <=> b[:name]}.each do |stanza| -%>
+<% if stanza.key?(:comment) -%>
+#<%= stanza[:comment] %>
+<% end -%>
+frontend <%= stanza[:name] %>
+  <% stanza[:lines].each do |l| -%>
+  <%= l %>
+  <% end -%>
+
+<% end -%>
+<% @back_ends.sort{|a,b| a[:name] <=> b[:name]}.each do |stanza| -%>
+<% if stanza.key?(:comment) -%>
+#<%= stanza[:comment] %>
+<% end -%>
+backend <%= stanza[:name] %>
+  <% stanza[:lines].each do |l| -%>
+  <%= l %>
+  <% end -%>
+
+<% end -%>
+
+

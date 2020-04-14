@@ -1,0 +1,34 @@
+<% if @update_motd %>
+#!/bin/sh
+
+cat <<EOS
+<% end -%>
+
+<% if @color %>
+  This is [1;4;34;49m<%= @node['fqdn'] %>[0m
+  Environment Name:      [4;96;49m<%= @node['environment_name'] %>[0m
+  node.chef_environment: [4;95;49m<%= @node.chef_environment %>[0m
+<% else %>
+  This is <%= @node['fqdn'] %>
+  Environment: <%= @node['environment_name'] %> [<%= @node.chef_environment %>]
+<% end -%>
+<% if @node['env_flags']['is_production'] == true %>
+
+  just in case you didn't notice the line above, maybe this cow helps:
+
+   ___________________________________
+<% if @color %>
+  < [1;4;5;7;31;49mYOU ARE ON A PRODUCTION SERVER![0m >
+<% else %>
+   < YOU ARE ON A PRODUCTION SERVER! >
+<% end -%>
+   -----------------------------------
+          \   ^__^
+           \  (oo)\_______
+              (__))\/\    \\
+                  ||----w |
+                  ||     ||
+<% end -%>
+<% if @update_motd %>
+EOS
+<% end -%>

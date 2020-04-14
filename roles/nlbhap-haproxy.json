@@ -1,0 +1,9 @@
+{
+    "name": "nlbhap-haproxy",
+    "json_class": "Chef::Role",
+    "description": "nlbhap haproxy server",
+    "run_list": [ "recipe[nlbhap-haproxy]" ],
+    "default_attributes": { },
+    "override_attributes": { },
+    "chef_type": "role"
+}
