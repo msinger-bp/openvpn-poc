@@ -10,14 +10,14 @@ locals {
   ##  EVALUATE DEFAULT EC2 INSTANCE PARAMETERS
   http_ami_id        = "${ coalesce( var.http_instance_ami_id, var.base_strings["default_ami_id"] ) }"
   http_instance_type = "${ coalesce( var.http_instance_type, var.env_strings["default_ec2_instance_type"] ) }"
-  http_chef_role     = "${ coalesce( var.http_chef_role, "${var.name}_http" ) }"
+  http_chef_role     = "${ coalesce( var.http_chef_role, "${var.name}" ) }"
 }
 
 ##  EC2 INSTANCE CLUSTER
 module "http_cluster" {
   source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//ec2/cluster.private/0.1.11"
   ##  NAME FOR RESOURCES/HOSTNAMES/TAGS/ETC
-  name                              = "${var.name}-http"
+  name                              = "${var.name}"
   ##  ENVIRONMENT
   org                               = "${var.env_strings["org"]}"
   env                               = "${var.env_strings["env"]}"
