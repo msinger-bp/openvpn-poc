@@ -1,9 +1,0 @@
-{
-    "name": "cluster2",
-    "json_class": "Chef::Role",
-    "description": "cluster2 role",
-    "run_list": [ "recipe[example-web::default]" ],
-    "default_attributes": { },
-    "override_attributes": { },
-    "chef_type": "role"
-}

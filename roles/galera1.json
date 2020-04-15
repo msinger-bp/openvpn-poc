@@ -1,9 +1,0 @@
-{
-    "name": "galera1",
-    "json_class": "Chef::Role",
-    "description": "Galera Server in Cluster #1",
-    "run_list": [ "recipe[ref-galera1::default]" ],
-    "default_attributes": { },
-    "override_attributes": { },
-    "chef_type": "role"
-}
