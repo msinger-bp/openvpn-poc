@@ -1,9 +1,0 @@
-{
-    "name": "backend",
-    "json_class": "Chef::Role",
-    "description": "backend role",
-    "run_list": [ "recipe[example-web::default]" ],
-    "default_attributes": { },
-    "override_attributes": { },
-    "chef_type": "role"
-}

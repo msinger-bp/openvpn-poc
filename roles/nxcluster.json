@@ -1,9 +1,0 @@
-{
-    "name": "nxcluster1",
-    "json_class": "Chef::Role",
-    "description": "nxcluster1 role",
-    "run_list": [ "recipe[example-web::default]" ],
-    "default_attributes": { },
-    "override_attributes": { },
-    "chef_type": "role"
-}

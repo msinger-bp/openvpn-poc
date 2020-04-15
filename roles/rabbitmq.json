@@ -1,9 +1,0 @@
-{
-    "name": "rabbitmq",
-    "json_class": "Chef::Role",
-    "description": "rabbitmq role",
-    "run_list": [ "recipe[ref-rabbitmq::default]" ],
-    "default_attributes": {},
-    "override_attributes": {},
-    "chef_type": "role"
-}
