@@ -26,9 +26,10 @@ module "cluster" {
   ##  IAM POLICY ARNS - ALL WILL BE ATTACHED TO THE INSTANCE PROFILE / ROLE
   addl_iam_policy_arns              = "${ concat(
     var.chef_lists["iam_policy_arns"],
-    var.addl_iam_policy_arns
+    var.addl_iam_policy_arns,
+    list(aws_iam_policy.ecr.arn)
   ) }"
-  addl_iam_policy_count             = "2" ##  MUST BE MANUALLY TALLIED AND AN INTEGER ENTERED HERE
+  addl_iam_policy_count             = "3" ##  MUST BE MANUALLY TALLIED AND AN INTEGER ENTERED HERE
   ##  CHEF INTEGRATION
   chef_strings                      = "${var.chef_strings}"
   tf_state_vars                     = "${var.terraform_strings}"
