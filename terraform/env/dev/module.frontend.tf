@@ -9,7 +9,7 @@
 ##
 
 module "frontend" {
-  source                            = "../../site-modules/frontend/0.4.0"
+  source                            = "../../site-modules/frontend/0.4.1"
   name                              = "frontend"
   ##  ALB CONFIG
   alb_subnet_group_octet            = "${var.subnet_group_octets["frontend_alb"]}"
