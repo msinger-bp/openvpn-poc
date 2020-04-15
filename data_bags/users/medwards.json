@@ -4,7 +4,7 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCr9FWkc2g0/Hni02bTUXEbXIVP5ARHWJZZr3Qjle3+XYUrXuw800+JWeLp5TLbyE3xNXc9koPmMEB/GIEUZhgMCPz1Bw518vAqR2ks3P6IHdW2VLSJEXPJi8i3Fnkek1moLlIxtRHbIQpxpTgnpSt6TZPCmJRC0w0WXuZRe0KNCrCkN4GCT3U/iZgRl+8ED05Zl/JGlmB2BL7B3vZMaBcfjcMn2aO2sb81H/raVpULpHPB5Yxd0G8SyQxWhyeDhZwVX2Ol17MnsmVX+r31pX1ednqRJtGivun7bC5h8UAJ9kmfd/fn439vKVUM7v/PffelrQzg5tyOVpoXYOeSI5ZUBuk8kpl8r6XMK3IJsGEiCwFA+uGsWZlZLIU73F3CjzSSNruKQzSUq7mEVJ2Kfty6NjwTLpdDLD1EbzvkblH0Y0f4WjPCqwR69S0tjylxITIAtxPeAEdSFCFY6ma08uqVaaL16BAIVoFknQb/PSV6lBZtmZoWQ8KD+eTOV1z16qdUqh2+b/PSCKHwfoR8hFmq3HMy0veUOg7zuLLm/u36npJXNMudZwdeYGRUdlMqtTAcXJI1QYB6gh2MJjZJhc1wbUTxz7JbKpvDO5dw+4sRjsX3FuP71h6Q8H/gfZdOgQOtAsMiNSrcHiJeDNuP6iETkxfIcwKymaSrnu0vPS6Thw== medwards@BitPushers-MBP"
   ],
   "uid": "11005",
-  "groups": [ "dev" ],
+  "groups": [ "sysadmin", "adm", "docker" ],
   "htpasswd": "{SHA}QRduMLHvLN5Nj8sm2OZBRl51Ses=",
   "shell": "/bin/bash",
   "comment": "Michael Edwards"

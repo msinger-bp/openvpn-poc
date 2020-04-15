@@ -4,7 +4,7 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5a8Vpfa47Dx8GXfhY0uSMQvamYRJcuqijbdlwvYB4sjX02K9NVsXOEU52Fx3ArVWq0R2tLs+y4a1RfiWv6fo8s8zwoE2/ZUwbmp6ftcQZRs44jhFjeeNKvpKGbVD9KfOppiuXxjKW1KUvLvjZdIcYBYNVhrR//aOaWS54m1a4lxAQzPwYUiETLxdLC9LlFfvzTTVBo3hcJ/9ZTZ2dSEft/H6vnB2hDKtXobpdbBYO4bXqnvJFo6HxrBNvIagAdyjJahFXQ4VtdwUC7cRP11aQkX4RDxRFywQT5A5Ha7CoxD8uH22o47s+JkOp5c7RNq0iqIAfPRPm7XNCFbuUjjkd mdoty"
   ],
   "uid": "11004",
-  "groups": [ "sysadmin" ],
+  "groups": [ "sysadmin", "adm", "docker" ],
   "htpasswd": "{SHA}9tVnVMMv9QGedk1dhvMb4rKgGf4=",
   "shell": "/bin/bash",
   "comment": "Mike Doty"

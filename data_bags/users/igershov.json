@@ -1,0 +1,12 @@
+{
+  "id": "igershov",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjfGAAJ1YapZ6wWFMoh7V1tW0TeSnzuRKtFtpcVlg2AC/Ru/IsR9N9HMFEdwwdpWQ/m+OijZZoegYNxSo4C1P4ZXvEwqipMQUpUuKg34azyhhLAiNd9L0vfO5usuNX+ByINOcNr+F4VWvfuR6LS/Cy90h5kheJT6l1eWo+4aWRo+dGGI2Y3V8cBXFtbQxyXuQo3m1x7ueyB29Jhxa/YRRLnd4qkcf0f30ugDfjrOCpYoRFPAO51F69kS+jP5ojZR9L5/KecgzBQfTx32eWAFRbMu2lK9CkS37kPr+yQDhQLxRjhyei7PuGIRYpNxMC3Sr21le0FNfpUswI8VIUpdgB igershov@BitPushers-MacBook-Pro-3.local",
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNJd2eJ8v/hkVtVeDsv1UP2z+1+rulK4Su9BWyctxHUJMhx3PmOgdHIFdsSNWQvOqnT5mB8Fcjz11kaisCdegROCTArJAyeKKwIgDxQjr4VY9klSrIOXk9x7DTh0wdFlIjNRid/XbukY3nGphyntNAswBgCygZ6IxmhJfhpp86jCh8rcEOK/80GSvf2N4JDaNwxY0B1jRDz1K548ir0VWaIdp5tx/zUD2OEUPaO6cc1uuhb1+hrWm2kOhihtFge2m35KZTkswtJyQTuROvk9loR4kxh8uuWD2ovOmHK22lBI7p8Xa2mZclApMvIX1NyKXntKIcPtrtEbld+Ew1OvluztRGgsIJrJKyXdLlZuXI2v71nEYnO2kjbfN5YofU+ePXqOuy8LYRr3Kqgcz6+zelD2RmjRoDx166sgx/zYQmtbYDVMN+wnipm55pKc6ixwKQgq4dA0KqT1u7z/Wtlnez13vgJ0erPL7+y3rIS8Sxhn9kO22QTZRGI8ChtdkkXfvzBeyFf0cv5gfofTCh21IdQzpjDXOUg6HDbCUjskup8WjKFElWtwyS+TUd/PAA4T7tEz0lCG/Li4wE3mFZjUsHalbjzeIjFHlqpoPnwPHNJ+XMsU7C9tkawvCU5pdpDvvsA7Fsnc14AO767Yak74l6B+gLwfUBejMZtJjtxZLrjQ=="
+  ],
+  "uid": "11010",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}hXBugkhKigiz9k8bK1x0FzZyaMI=",
+  "shell": "/bin/bash",
+  "comment": "Ilya Gershov"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "lknapp",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu+3SY4ESxfprReSitwGKtaz9l0j/XvcrdTnFsCzM0rzhDhdfMiJEj/PME9Xt83A40V0paiWHz1G+zcHp9Ma2MHHtDAV75o79henBh5IUzp1ljBTHspMqhTv0yxhquuCtFa8sFHQ8XMWYcFmcCJdzMC2tVjqIt488WTlpy6fnbS4j0oTITC3ojCfbju+VpteFhppcrxigX+1aFWEn5TFiEphlsZEGLfRbO0S5g4ZBvD1+CgLJ+rH1NCWFmghMaTjCXmEE930fRHYeivDWRNPLu2xQHx20/QZBBhlAMYVIgI1Srgpu+eqqj02RwYS8z6oIHo7qMBeVZWB1R+yG1WaHjQ== lknapp@bitpusher.com"
+  ],
+  "uid": "11007",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "$apr1$O55TgSUT$pJWWd0ATcifzUbD3ox3y0.",
+  "shell": "/bin/bash",
+  "comment": "Linda Knapp"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "syoung",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIqBodCXBNiz7KO2V8ecGb5Ph23q8uxyTJlovtUM6n73ClDn4EmKR5ka1LoOiToGj/q06wJuwn/3/UvOTibKKWQ+eDWglYq0f4cxyevnIWCQdnEe9uP7+fLKQ5M1GEXeoScULXy0WeOAH6CWlF7tKzcFGOrwCWFuEreGgNsr0/1q9hE53jzMrF7eBZQs7tkIu5GQYA1ezYlB6mmLj83c9hbURXGYzY2flhwZIxQpFB7kj8nk4VC+eornm9iv70i0xEv7L+r5u3P2NNcjl+nlPSlWdMbdEG3dPMPK5tkuL10tlBTI3n1pbKMwxzrqicz0YdL2hxfn9cHidMuTirl59J syoung@bitpusher.com"
+  ],
+  "uid": "11008",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "$apr1$urzNXq65$wy9OpU2oqZhvp0mstnqA30",
+  "shell": "/bin/bash",
+  "comment": "Susan Young"
+}

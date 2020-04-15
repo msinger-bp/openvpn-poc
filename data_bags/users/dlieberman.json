@@ -8,8 +8,8 @@
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBNIwxz9QNqWHA90RgVpCMocXvjOM7FkHwzzcwOqcTnUWSLbjQQ5uwTRwBGQvABtoOdMubbgtAFgAC+tKO+urt6SLzb31g53WUjw7mMGrI0WAIKs4oQZbIpfxKCz2AUfGDzPYCHYW7ml+v2ZRjnyAWBuYEVPdcGHc7ErwzhJUcg20gM0S44G8T83VawdTGOlwhpC1MRD/FoLF51zIyybM6umq29ibaMa/VBgj+iOyvEwc7fIQojNMkNF0vbtZFLW74TVobUg4mLCpte/MaAa1cZ1HhjQqINCz4lePKCGiyHogAlbYm6xZi7VlLxSPq8AvERAMDhfx+feZoR4gJp537kEWiI/UZUllgcVXS9TqpHkLOqoOtQkeJ2NoqddDuBJlx2py9yUewi6+914wXVnnfERR3iYXbmsIhRmJHKbNQpIf/KPoagN+8d81Dvvc0y5jbhmItlq1ny+lsOOWo7MSldxMZv3qo36Ix591VNizXjbEoahAqe1X603jjgVheNUpKVie6fzEc+I2+TsCE0o1lE5big+9z5kyqFs+FcctDJ90sSlFUBavVoxNCUkTcoQR2slaxiyrt+h0NWroTcxcY24MQxTWtcNkb51M9B4hOkqwt/6W524vCfH+Oxg4H2NIPWeuQp7fsFAuFTPjcKrePQWqQwwBQoYc+mYnSG55u8w== dlieberman@DL-MBP-13-16.local"
   ],
   "uid": "11002",
-  "groups": [ "sysadmin" ],
-  "htpasswd": "{SHA}LovA9n2NgIEXiLLgBYTXbQn4koE=",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}deCI4XNVamPpYzKBUt8eOmWBSaM=",
   "shell": "/bin/bash",
   "comment": "Daniel Lieberman"
 }

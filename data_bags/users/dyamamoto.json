@@ -1,0 +1,11 @@
+{
+  "id": "dyamamoto",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDA48uEU+wfEcmF/FqT6yal7FhZgBJCFZlvzan1KF1Z1XnaCeyjlPxXl/f9Uj5dzTN/0+JnzOZ5djhsrVcbRH8iBB5X72WbHuIdDJVeCBIRdK2OE/5itRwRGDb8RwKrKSeIUncz4qcsuVWdIrkpVVh0Y4GasP+eRfeKT4YkFeM68ug7FgQetDqPqQQ1r3h24sYMDdD0VpW5Tl48HQ0NFQ6GkjN67ilNkKEdVSz4Cr6slHhW7iDE9r2LIunDN2QYqAdyBEhqRDaOHtHnEIha+c+u685wShHvYDDXP68BEHmj0lX8PVJxeZvC4hwwUCUe3sS2QH7mcM/d1VcxH/mVmO2T dyamamoto@BitPushers-MacBook-Pro.local"
+  ],
+  "uid": "11006",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}s7/0UndplitX9GrjXeJtUtKPFd0=",
+  "shell": "/bin/bash",
+  "comment": "Dale Yamamoto"
+}

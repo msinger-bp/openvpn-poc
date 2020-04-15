@@ -1,0 +1,11 @@
+{
+  "id": "asquires",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuXsgYAmCbM5fz73m720Rc2R4mNQEP16SahO2vaaoJR955U44mVR5miCurwqkJ5HEP74SO1RJYBaGZYsUXSVPjxYUH+qaJGiRSj6JMwK8/4+zy+cQ1nLhb5/WwmW7M5+aHNB4ArVx6XLI/dbmJB81kjAtvdipozVT0mqkWj/PCXlgAGDOrqf2Bp1AbtvkFyz9DBwV73ZaDwQ161Cs7Z+RNRctAs3X0uq8HyRslIEm3nMopiMRunbQqpH+VXVwOXcbn+WvHc+kkLzTFmxt6qczSCEJwjM/0pE+iVUTOUQyCUTng97DHtH/b+02S9+Z+GpG98upjG583Dee8gVcX+eNVBJkMfr9XRG1lzKWdsyl6/WdjhCD/Wm5kmkbPImIp0Mn0sicUYZSRgPwVP5usCYBC3CDiyCIEVbyWmQVNhQuxJV3fPv2JYhuiY9hGW7Im5o1+LXkEV1KETZ53dlu7hm4HgrUcCZVRgDPsiCc6fi1kIIsl4Mmhb/mh70wuIJpifLDqqQrjhkvMwexj0ljH8NCCKjdb0iIaYuuUkfkgtulIA+X+JI1g/9lQtuB4ZLHucBABdo6tLDEgwMsEns+eh6++lbVXjS9+bma528DDmBL9H033f0FS6FtnVQe2rNqqYzTvwX/RhgdeNOG0GW5DUVx/eYpMryL7SOa8oIqnQ2Zg6Q== asquires@BitPushers-MacBook-Pro-2.local"
+  ],
+  "uid": "11009",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}qQ4TbeyJP0Y/G9io+WjXciKtpRg=",
+  "shell": "/bin/bash",
+  "comment": "Amy Squires"
+}
