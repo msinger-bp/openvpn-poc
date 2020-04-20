@@ -9,5 +9,6 @@ default['acadience-frontend']['container']['gid']   = 500
 
 default['db']['username']='app'
 default['db']['password']='app-in-dev'
-default['db']['host']=node['terraform'][node.chef_environment]['modules'][0]['outputs']['db-main_endpoint']
+default['db']['host']=node['terraform'][node.chef_environment]['modules'][0]['outputs']['db-main_endpoint']['value']
+
 
