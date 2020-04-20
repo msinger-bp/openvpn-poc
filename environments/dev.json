@@ -4,10 +4,15 @@
   "description": "dev Environment",
   "cookbook_versions": {},
   "default_attributes": {
-    "environment_name": "dev",
+    "environment_name": "development",
     "env_flags": {
       "devs_have_sudo": false,
       "is_production": false
+    },
+    "db": {
+      "name": "dev",
+      "username": "app", 
+      "password": "app-in-dev"
     }
   },
  "chef_type": "environment"

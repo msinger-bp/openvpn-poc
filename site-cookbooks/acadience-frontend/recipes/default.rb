@@ -86,7 +86,7 @@ docker_container 'frontend' do
   user           "#{node[cookbook_name]['container']['uid']}:#{node[cookbook_name]['container']['gid']}"
   restart_policy 'always'
   network_mode   'host'
-  env            [ "NODE_ENV=development", "TEST_DATABASE_NAME=app", "DATABASE_NAME=app", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar" ]
+  env            [ "NODE_ENV=#{node['environment_name']}", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar" ]
   log_opts       [ 'max-size=10M', 'max-file=5' ]
   volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
   ro_rootfs      true
