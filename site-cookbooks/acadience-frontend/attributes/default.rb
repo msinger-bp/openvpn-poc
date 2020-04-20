@@ -4,8 +4,8 @@ default['acadience-frontend']['repo']               = '695990525005.dkr.ecr.us-w
 default['acadience-frontend']['tag']                = 'latest'
 default['acadience-frontend']['container']['user']  = 'container'
 default['acadience-frontend']['container']['group'] = 'container'
-default['acadience-frontend']['container']['uid']   = 1000 #node base image uses 1000/1000
-default['acadience-frontend']['container']['gid']   = 1000
+default['acadience-frontend']['container']['uid']   = 500 #node base image uses 1000/1000
+default['acadience-frontend']['container']['gid']   = 500
 
 default['db']['username']='app'
 default['db']['password']='app-in-dev'
