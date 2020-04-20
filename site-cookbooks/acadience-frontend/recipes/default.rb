@@ -59,6 +59,13 @@ directory "/srv/acadience/frontend/data" do
   action :create
 end
 
+directory "/srv/acadience/frontend/tmp" do
+  owner  node[cookbook_name]['container']['user']
+  group  node[cookbook_name]['container']['group']
+  mode   "0755"
+  action :create
+end
+
 docker_image_prune 'frontend' do
   dangling false
   action :nothing
@@ -81,7 +88,7 @@ docker_container 'frontend' do
   network_mode   'host'
   env            [ "DATABASE_NAME=app", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar" ]
   log_opts       [ 'max-size=10M', 'max-file=5' ]
-  volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data' ]
+  volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
   ro_rootfs      true
   cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
   ignore_failure true
