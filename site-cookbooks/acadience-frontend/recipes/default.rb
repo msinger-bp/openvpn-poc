@@ -80,7 +80,7 @@ docker_image 'frontend' do
   ignore_failure true
 end
 
-node['cpu']['total'].each do |i|
+Array.new(node['cpu']['total']) {|i| i}.each do |i|
   docker_container "frontend-#{i}" do
     repo           node[cookbook_name]['repo']
     tag            node[cookbook_name]['tag']
