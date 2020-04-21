@@ -10,7 +10,7 @@ resource "aws_lb_target_group" "default" {
     unhealthy_threshold             = 10
     timeout                         = 5
     interval                        = 10
-    path                            = "/index.html"
+    path                            = "/api/health"
     port                            = 8080
   }
 }

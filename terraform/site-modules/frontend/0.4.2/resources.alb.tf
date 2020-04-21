@@ -18,4 +18,4 @@ module "alb" {
 output "alb_sg_id"                  { value = "${module.alb.sg_id}" }
 output "alb_arn"                    { value = "${module.alb.alb_arn}" }
 output "alb_public_dns_name"        { value = "${module.alb.alb_dns_name}" }
-output "alb_public_cname"           { value = "${module.alb.cname_long}" }
+output "alb_public_cname"           { value = "${module.alb.cname_short}" }
