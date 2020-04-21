@@ -80,17 +80,19 @@ docker_image 'frontend' do
   ignore_failure true
 end
 
-docker_container 'frontend' do
-  repo           node[cookbook_name]['repo']
-  tag            node[cookbook_name]['tag']
-  user           "#{node[cookbook_name]['container']['uid']}:#{node[cookbook_name]['container']['gid']}"
-  restart_policy 'always'
-  network_mode   'host'
-  env            [ "NODE_ENV=production", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar", "PORT=8080" ]
-  log_opts       [ 'max-size=10M', 'max-file=5' ]
-  volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
-  ro_rootfs      true
-  cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
-  ignore_failure true
+node['cpu']['total'].each do |i|
+  docker_container "frontend-#{i}" do
+    repo           node[cookbook_name]['repo']
+    tag            node[cookbook_name]['tag']
+    user           "#{node[cookbook_name]['container']['uid']}:#{node[cookbook_name]['container']['gid']}"
+    restart_policy 'always'
+    network_mode   'host'
+    env            [ "NODE_ENV=production", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar", "PORT=8080" ]
+    log_opts       [ 'max-size=10M', 'max-file=5' ]
+    volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
+    ro_rootfs      true
+    cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
+    ignore_failure true
+  end
 end
 
