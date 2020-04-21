@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "default" {
   }
 }
 
-resource "aws_lb_target_group_attachment-8080" "default" {
+resource "aws_lb_target_group_attachment" "default-8080" {
   count                             = "${var.instance_count}"
   target_group_arn                  = "${aws_lb_target_group.default.arn}"
   port                              = 8080
@@ -26,7 +26,7 @@ resource "aws_lb_target_group_attachment-8080" "default" {
   }
 }
 
-resource "aws_lb_target_group_attachment-8081" "default" {
+resource "aws_lb_target_group_attachment" "default-8081" {
   count                             = "${var.instance_count}"
   target_group_arn                  = "${aws_lb_target_group.default.arn}"
   port                              = 8081
@@ -37,7 +37,7 @@ resource "aws_lb_target_group_attachment-8081" "default" {
   }
 }
 
-resource "aws_lb_target_group_attachment-8082" "default" {
+resource "aws_lb_target_group_attachment" "default-8082" {
   count                             = "${var.instance_count}"
   target_group_arn                  = "${aws_lb_target_group.default.arn}"
   port                              = 8082
@@ -48,7 +48,7 @@ resource "aws_lb_target_group_attachment-8082" "default" {
   }
 }
 
-resource "aws_lb_target_group_attachment-8083" "default" {
+resource "aws_lb_target_group_attachment" "default-8083" {
   count                             = "${var.instance_count}"
   target_group_arn                  = "${aws_lb_target_group.default.arn}"
   port                              = 8083

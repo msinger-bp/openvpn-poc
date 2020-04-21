@@ -94,4 +94,5 @@ end
     ignore_failure true
     subscribes :redeploy, 'docker_image[frontend]', :immediately
   end
+end
 
