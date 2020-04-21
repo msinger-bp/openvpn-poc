@@ -75,7 +75,6 @@ docker_image 'frontend' do
   repo           node[cookbook_name]['repo']
   tag            node[cookbook_name]['tag']
   action         :pull
-  notifies       :redeploy, 'docker_container[frontend]', :immediately
   notifies       :prune, 'docker_image_prune[frontend]', :delayed
   ignore_failure true
 end
@@ -93,6 +92,7 @@ Array.new(node['cpu']['total']) {|i| i}.each do |i|
     ro_rootfs      true
     cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
     ignore_failure true
+    subscribes :redeploy, 'docker_image[frontend]', :immediately
   end
 end
 
