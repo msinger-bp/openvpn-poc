@@ -66,8 +66,16 @@ directory "/srv/acadience/frontend/tmp" do
   action :create
 end
 
+#environment used by app
+env=[ "NODE_ENV=production", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar" ]
+
 docker_image_prune 'frontend' do
   dangling false
+  action :nothing
+end
+
+bash 'run-migrations' do
+  code "docker run -t #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} #{env.map {|i| \"-e ${i}\"}.join(' ')} npm run migrate"
   action :nothing
 end
 
@@ -75,6 +83,8 @@ docker_image 'frontend' do
   repo           node[cookbook_name]['repo']
   tag            node[cookbook_name]['tag']
   action         :pull
+  notifies       :run,   'ruby_block[stop-containers]',  :immediately
+  notifies       :run,   'bash[run-migrations]',         :immediately
   notifies       :prune, 'docker_image_prune[frontend]', :delayed
   ignore_failure true
 end
@@ -86,13 +96,20 @@ end
     user           "#{node[cookbook_name]['container']['uid']}:#{node[cookbook_name]['container']['gid']}"
     restart_policy 'always'
     network_mode   'host'
-    env            [ "NODE_ENV=production", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar", "PORT=#{8080 + i - 1}" ]
+    env            [env, "PORT=#{8080 + i - 1}"].flatten
     log_opts       [ 'max-size=10M', 'max-file=5' ]
     volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
     ro_rootfs      true
     cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
     ignore_failure true
-    subscribes :redeploy, 'docker_image[frontend]', :immediately
+    subscribes :stop, 'ruby_block[stop-containers]', :immediately
+    subscribes :redeploy, 'bash[run-migrations]', :immediately
   end
 end
 
+ruby_block 'stop-containers' do
+  action :nothing
+  block do
+    "" #this is to make Ruby happy, does this make motz true?
+  end
+end
