@@ -81,7 +81,7 @@ docker_image_prune 'frontend' do
   action :nothing
 end
 
-env_list=env.map {|i| "--env #{i}"}.join(' ')
+env_list=(env + ["PORT=8000"]).map {|i| "--env #{i}"}.join(' ')
 cmd="docker run -t #{env_list} -w /app/server #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} npm run migrate"
 puts cmd
 
