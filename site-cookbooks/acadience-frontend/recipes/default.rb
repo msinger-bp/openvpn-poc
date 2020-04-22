@@ -85,7 +85,10 @@ end
 #run a new container to run "npm run migrate", then we relaunch all the app containers.
 env_list=(env + ["PORT=8000"]).map {|i| "--env #{i}"}.join(' ')
 bash 'run-migrations' do
-  code "docker run -t --rm #{env_list} -w /app/server #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} npm run migrate"
+  code <<-EOF
+docker run -t --rm #{env_list} -w /app/server #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} npm run migrate
+docker container prune -f
+EOF
   action :nothing
 end
 
