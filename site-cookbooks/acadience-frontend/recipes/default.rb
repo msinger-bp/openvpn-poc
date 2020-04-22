@@ -82,8 +82,11 @@ docker_image_prune 'frontend' do
 end
 
 env_list=env.map {|i| "-e #{i}"}.join(' ')
+cmd="docker run -t #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} #{env_list} npm run migrate"
+puts cmd
+
 bash 'run-migrations' do
-  code "docker run -t #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} #{env_list} npm run migrate"
+  code cmd
   action :nothing
 end
 
