@@ -67,7 +67,14 @@ directory "/srv/acadience/frontend/tmp" do
 end
 
 #environment used by app
-env=[ "NODE_ENV=production", "TEST_DATABASE_NAME=#{node['db']['name']}", "DATABASE_NAME=#{node['db']['name']}", "DATABASE_HOST=#{node['db']['host']}", "DATABASE_USER=#{node['db']['username']}", "DATABASE_PASSWORD=#{node['db']['password']}", "SESSION_SECRET=foobar" ]
+env=[ "NODE_ENV=production", 
+      "TEST_DATABASE_NAME=#{node['db']['name']}", 
+      "DATABASE_NAME=#{node['db']['name']}", 
+      "DATABASE_HOST=#{node['db']['host']}", 
+      "DATABASE_USER=#{node['db']['username']}", 
+      "DATABASE_PASSWORD=#{node['db']['password']}", 
+      "SESSION_SECRET=foobarqwedfjkbdawdfjknawerjfkweFLEJKWFNjwefn132roinqedjdn" 
+    ]
 
 docker_image_prune 'frontend' do
   dangling false
@@ -91,13 +98,14 @@ docker_image 'frontend' do
 end
 
 (1..4).each do |i|
+  c_env=env + ["PORT=#{8080 + i - 1}"]
   docker_container "frontend-#{i}" do
     repo           node[cookbook_name]['repo']
     tag            node[cookbook_name]['tag']
     user           "#{node[cookbook_name]['container']['uid']}:#{node[cookbook_name]['container']['gid']}"
     restart_policy 'always'
     network_mode   'host'
-    env            [env, "PORT=#{8080 + i - 1}"].flatten
+    env            c_env
     log_opts       [ 'max-size=10M', 'max-file=5' ]
     volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp' ]
     ro_rootfs      true
