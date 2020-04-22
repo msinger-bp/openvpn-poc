@@ -81,12 +81,11 @@ docker_image_prune 'frontend' do
   action :nothing
 end
 
+#When we get a new docker_image, we first stop all the running containers, then 
+#run a new container to run "npm run migrate", then we relaunch all the app containers.
 env_list=(env + ["PORT=8000"]).map {|i| "--env #{i}"}.join(' ')
-cmd="docker run -t #{env_list} -w /app/server #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} npm run migrate"
-puts cmd
-
 bash 'run-migrations' do
-  code cmd
+  code "docker run -t --rm #{env_list} -w /app/server #{node[cookbook_name]['repo']}:#{node[cookbook_name]['tag']} npm run migrate"
   action :nothing
 end
 
