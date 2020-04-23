@@ -1,0 +1,11 @@
+{
+  "id": "nbernstein",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzoO34k/gcimdMkeYtxB6MrJ2+fdYs7E7ug+hlXwG/vN0SEfBlIDVWs6IYeIee0144vn2cYCRNY2NgHIt+QiYSRg5kzhHKL+yS/SzOlXmqUGui1ch2eBq/4Dwtz1AVkeeY4iCpykVZnVpUo8j8HhirE3fPajkPJKILdjoZrQNhUvC1buDk3SD+gv9GASn5bjaG7SRicOSXlmIt80MEs63WEHi3KrStwxNSwZuy9KsRlBsQQPnbKSvlmdlDankl7GinJ/qBj/RyC2tIcyKIvSmbAxhoEWZktZdF/Jw9/zY2ifPzrAN7TvjWnfezRxwQ6fWVC0BRd1GcTfQA3bTak3Nf nate@Nates-MacBook-Pro.local"
+  ],
+  "uid": "11101",
+  "groups": [ "frontend" ],
+  "htpasswd": "",
+  "shell": "/bin/bash",
+  "comment": "Nate Bernstein"
+}

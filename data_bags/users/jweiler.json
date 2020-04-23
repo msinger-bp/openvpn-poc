@@ -1,0 +1,11 @@
+{
+  "id": "jweiler",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9kz/oLlOPWQaBg9PgJmrBL2G+nBReqvRvuCnWuUKU7PlM5/FNq0y637Zd2bwuLtcZEykdBoLwrP99GXqvI7v3MfbvMEP3hWScbty/ZU/BVczRlf180MYKZLFKvbv49dZmQSC+bMm+ZxXu3xJAUSZoqdYCM0WKnsOtrhve13snzQXsCBnFsJlaU7SDRbdiP4tPTQT1vjU/7Z9+/foWGrApNygk0fbU929ag5qrj86bl8O3YWI7tK+8uaid1a3DFdntcEq6BFauzEsoT9K7NM4nSZi3nEz9IkkKNeZoVt2wdNfHSvp6ip+BMWiPrBx0r02/+nztrUQ33gmzq0Cb/ROl jordan.weiler@emberex.com"
+  ],
+  "uid": "11100",
+  "groups": [ "frontend" ],
+  "htpasswd": "",
+  "shell": "/bin/bash",
+  "comment": "Jordan Weiler"
+}
