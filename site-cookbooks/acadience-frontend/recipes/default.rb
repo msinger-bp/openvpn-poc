@@ -14,8 +14,8 @@ end
 docker_installation 'default'
 
 # needs to happen after docker is installed...
-include_recipe "#{cookbook_name}::ecr_auth
-"include_recipe "#{cookbook_name}::users"
+include_recipe "#{cookbook_name}::ecr_auth"
+include_recipe "#{cookbook_name}::users"
 
 # all container should run as this user
 group node[cookbook_name]['container']['group'] do
