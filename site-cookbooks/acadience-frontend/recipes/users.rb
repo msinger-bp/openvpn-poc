@@ -1,5 +1,5 @@
 users_manage 'frontend' do
-  group_id 20000
+  group_id 20001
   action :create
 end
 
