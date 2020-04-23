@@ -6,7 +6,7 @@
   "default_attributes": {
     "environment_name": "development",
     "env_flags": {
-      "devs_have_sudo": false,
+      "devs_have_sudo": true,
       "is_production": false
     },
     "db": {

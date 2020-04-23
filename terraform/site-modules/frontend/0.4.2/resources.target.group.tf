@@ -11,7 +11,6 @@ resource "aws_lb_target_group" "default" {
     timeout                         = 5
     interval                        = 10
     path                            = "/api/health"
-    port                            = 8080
   }
 }
 
