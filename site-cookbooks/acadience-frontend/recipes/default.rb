@@ -71,7 +71,7 @@ end
 env=[ "NODE_ENV=production", 
       "TEST_DATABASE_NAME=#{node['db']['name']}", 
       "DATABASE_NAME=#{node['db']['name']}", 
-      "DATABASE_HOST=#{node['db']['host']}", 
+      "DATABASE_HOST=#{node['db']['host'].split(':').first}", 
       "DATABASE_USER=#{node['db']['username']}", 
       "DATABASE_PASSWORD=#{node['db']['password']}", 
       "SESSION_SECRET=foobarqwedfjkbdawdfjknawerjfkweFLEJKWFNjwefn132roinqedjdn" 
