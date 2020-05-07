@@ -7,14 +7,14 @@ module "maindb" {
   ##  FOR VERSION COMPATIBILITY, CONSULT https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
   engine_major_version    = "5.7"
   engine_minor_version    = "22"
-  instance_class          = "db.m5.large"
+  instance_class          = "db.t3.small"
   ##  FOR STORAGE COMPATIBILITY, CONSULT: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
   allocated_storage       = "100"
   max_allocated_storage   = "200"
   storage_type            = "gp2"
-  database_name           = "myappdb"
-  admin_username          = "appdbadmin"
-  admin_password          = "password"
+  database_name           = "app"
+  admin_username          = "admin"
+  admin_password          = "password123"
   backup_retention_period = "32"
   backup_window           = "09:45-10:20" ##  AT LEAST 30 MINUTES
   maintenance_window      = "fri:14:45-fri:16:45"

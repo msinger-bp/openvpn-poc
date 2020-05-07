@@ -23,7 +23,7 @@ module "frontend" {
   terraform_strings           = "${local.terraform_strings}"
   tags                        = "${local.tags}"
   ecr_arn                     = "arn:aws:ecr:us-west-2:695990525005:repository/frontend"
-  db-main_sg                  = "${module.db-main.sg_id}"
+  db-main_sg                  = "${module.maindb.master_sg_id}"
 }
 output "frontend_alb_public_cname"  { value = "${module.frontend.alb_public_cname}" }
 output "frontend_internal_cnames"   { value = "${module.frontend.internal_cnames}" }
