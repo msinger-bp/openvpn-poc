@@ -18,6 +18,9 @@ module "maindb" {
   backup_retention_period = "32"
   backup_window           = "09:45-10:20" ##  AT LEAST 30 MINUTES
   maintenance_window      = "fri:14:45-fri:16:45"
+  parameters              = [
+    { name = "log_bin_trust_function_creators", value = "1" }
+  ]
   env_strings             = "${local.env_strings}"
   base_strings            = "${local.base_strings}"
   vpc_strings             = "${local.vpc-main_strings}"
