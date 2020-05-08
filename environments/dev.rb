@@ -9,10 +9,17 @@ def to_vmash(h, name='node', r=[], list=[])
     case v
     when Hash
       to_vmash(v, name, r, [list,k].flatten)
-    when Numeric, Float, Array, Symbol
+    when Numeric, Float, Array, Symbol, TrueClass, FalseClass
       r<<"#{name}" + [list,k].flatten.map{|i| "['#{i}']"}.join('') + " = #{v}"
     else # assume stringish
-      r<<"#{name}" + [list,k].flatten.map{|i| "['#{i}']"}.join('') + " = '#{v}'"
+      s="#{name}" + [list,k].flatten.map{|i| "['#{i}']"}.join('') + " = "
+      if v.to_s.lines.count < 2 #single line value
+        s += "'#{v}'"
+      else #multi-line value
+        eof="EOF_#{k}"
+        s += "<<#{eof}\n" + v + "#{eof}"
+      end
+      r<<s
     end
   end
   return r.join("\n")
