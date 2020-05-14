@@ -1,5 +1,5 @@
 module "cluster" {
-  source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//ec2/cluster.private/0.1.11"
+  source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//ec2/cluster.private/0.1.12"
   name                              = "${var.name}"
   subnet_group_octet                = "${var.subnet_group_octet}"
   instance_count                    = "${ coalesce( var.instance_count,                     var.az_count ) }"

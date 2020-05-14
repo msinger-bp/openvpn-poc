@@ -1,6 +1,6 @@
 ##  EC2 INSTANCE CLUSTER
 module "instance_cluster" {
-  source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//ec2/cluster.private/0.1.11"
+  source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//ec2/cluster.private/0.1.12"
   ##  NAME FOR RESOURCES/HOSTNAMES/TAGS/ETC
   name                              = "${var.name}"
   ##  ENVIRONMENT
