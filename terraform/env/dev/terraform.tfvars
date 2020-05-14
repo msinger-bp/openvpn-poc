@@ -87,8 +87,8 @@ subnet_group_octets         = {
 }
 
 ##  PUBLIC ROUT53 ZONE - MUST PRE-EXIST AND BE IN THIS ACCOUNT
-public_parent_domain        = "acadience.bitpushertest.com"
-public_parent_domain_ID     = "Z09814121B8ZFGSBPE0YB"
+public_parent_domain        = "env.acadiencelearning.org"
+public_parent_domain_ID     = "Z03050013U1G427SZU2ES"
 
 ##  CHEF INTEGRATION
 chef_repo                   = "git@cgit01.bitpusher.com:acadience/infra" ##  CHANGE THIS TO YOUR GIT REPO NAME
