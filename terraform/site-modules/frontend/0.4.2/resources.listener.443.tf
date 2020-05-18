@@ -9,6 +9,7 @@ module "acm" {
   ##  CERT NAME WILL BE "${var.name}.${var.public_subdomain_name}"
   zone_id             = "${var.base_strings["public_subdomain_id"]}"
   zone_name           = "${var.base_strings["public_subdomain_name"]}"
+  subject_alternative_names = "${var.acm_sans}"
 }
 
 ##  PORT 443 LISTENER
