@@ -1,0 +1,8 @@
+{
+  "name": "_bootstrap",
+  "json_class": "Chef::Environment",
+  "description": "Special bootstrap environment.  Go Away.",
+  "cookbook_versions": {},
+  "default_attributes": {},
+  "chef_type": "environment"
+}
