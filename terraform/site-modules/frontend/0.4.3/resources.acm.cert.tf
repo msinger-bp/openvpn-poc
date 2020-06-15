@@ -1,5 +1,5 @@
 module "acm" {
-  source                    = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//acm/cert/0.1.0"
+  source                    = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//acm/cert/0.1.1"
   name                      = "${var.name}"
   domain_name               = "${var.name}.${var.base_strings["public_subdomain_name"]}"
   subject_alternative_names = [ "${var.base_strings["public_subdomain_name"]}" ]
