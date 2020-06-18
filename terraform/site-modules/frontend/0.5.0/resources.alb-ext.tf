@@ -1,6 +1,6 @@
 module "alb-ext" {
   source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//lb/alb.public/0.1.2"
-  name                              = "${var.name}"
+  name                              = "${var.name}-ext"
   subnet_group_octet                = "${var.alb-ext_subnet_group_octet}"
   org                               = "${var.env_strings["org"]}"
   env                               = "${var.env_strings["env"]}"

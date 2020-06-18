@@ -1,7 +1,7 @@
 ##  TARGET GROUP
-resource "aws_lb_target_group" "default" {
+resource "aws_lb_target_group" "alb-ext" {
   ##  NAME CANNOT BE LONGER THAN 32 CHARACTERS >:{
-  name                              = "${local.org-env-name}"
+  name                              = "${local.org-env-name}-alb-ext"
   port                              = 8080
   protocol                          = "HTTP"
   vpc_id                            = "${var.vpc_strings["id"]}"
@@ -14,9 +14,9 @@ resource "aws_lb_target_group" "default" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "default-8080" {
+resource "aws_lb_target_group_attachment" "alb-ext-8080" {
   count                             = "${var.instance_count}"
-  target_group_arn                  = "${aws_lb_target_group.default.arn}"
+  target_group_arn                  = "${aws_lb_target_group.alb-ext.arn}"
   port                              = 8080
   target_id                         = "${module.cluster.instance_ids[count.index]}"
   ##  THIS IS REQUIRED DUE TO THE TF11 'ELEMENT' ISSUE
@@ -25,9 +25,9 @@ resource "aws_lb_target_group_attachment" "default-8080" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "default-8081" {
+resource "aws_lb_target_group_attachment" "alb-ext-8081" {
   count                             = "${var.instance_count}"
-  target_group_arn                  = "${aws_lb_target_group.default.arn}"
+  target_group_arn                  = "${aws_lb_target_group.alb-ext.arn}"
   port                              = 8081
   target_id                         = "${module.cluster.instance_ids[count.index]}"
   ##  THIS IS REQUIRED DUE TO THE TF11 'ELEMENT' ISSUE
@@ -36,9 +36,9 @@ resource "aws_lb_target_group_attachment" "default-8081" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "default-8082" {
+resource "aws_lb_target_group_attachment" "alb-ext-8082" {
   count                             = "${var.instance_count}"
-  target_group_arn                  = "${aws_lb_target_group.default.arn}"
+  target_group_arn                  = "${aws_lb_target_group.alb-ext.arn}"
   port                              = 8082
   target_id                         = "${module.cluster.instance_ids[count.index]}"
   ##  THIS IS REQUIRED DUE TO THE TF11 'ELEMENT' ISSUE
@@ -47,9 +47,9 @@ resource "aws_lb_target_group_attachment" "default-8082" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "default-8083" {
+resource "aws_lb_target_group_attachment" "alb-ext-8083" {
   count                             = "${var.instance_count}"
-  target_group_arn                  = "${aws_lb_target_group.default.arn}"
+  target_group_arn                  = "${aws_lb_target_group.alb-ext.arn}"
   port                              = 8083
   target_id                         = "${module.cluster.instance_ids[count.index]}"
   ##  THIS IS REQUIRED DUE TO THE TF11 'ELEMENT' ISSUE

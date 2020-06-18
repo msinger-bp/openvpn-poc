@@ -7,7 +7,7 @@ resource "aws_lb_listener" "ext_443" {
   certificate_arn     = "${module.acm.arn}"
   default_action {
     type              = "forward"
-    target_group_arn  = "${aws_lb_target_group.default.arn}"
+    target_group_arn  = "${aws_lb_target_group.alb-ext.arn}"
   }
 }
 

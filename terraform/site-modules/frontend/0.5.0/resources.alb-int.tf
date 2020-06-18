@@ -1,6 +1,6 @@
 module "alb-int" {
   source                            = "git::ssh://git@cgit01.bitpusher.com/bp-tools/bitpusher-terraform-modules//lb/alb.internal/0.1.4"
-  name                              = "${var.name}"
+  name                              = "${var.name}-int"
   subnet_group_octet                = "${var.alb-int_subnet_group_octet}"
   org                               = "${var.env_strings["org"]}"
   env                               = "${var.env_strings["env"]}"
