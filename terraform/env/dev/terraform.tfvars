@@ -82,9 +82,7 @@ subnet_group_octets         = {
   galera2                   = "113"
   galera2-rds-backup        = "114"
   emr                       = "120"
-
   maindb                    = "160"
-
 }
 
 ##  PUBLIC ROUT53 ZONE - MUST PRE-EXIST AND BE IN THIS ACCOUNT
