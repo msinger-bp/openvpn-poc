@@ -7,7 +7,7 @@ module "frontend" {
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
   alb-int_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-int"]}"
   ##  INSTANCE CLUSTER
-  instance_subnet_group_octet = "${var.subnet_group_octets["frontend_http"]}"
+  instance_subnet_group_octet = "${var.subnet_group_octets["frontend_instances"]}"
   placement_group_strategy    = "spread"
   instance_count              = "1"
   instance_type               = "t3.medium"
