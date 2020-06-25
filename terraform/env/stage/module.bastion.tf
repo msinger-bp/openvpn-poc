@@ -8,7 +8,7 @@ module "bastion" {
   subnet_group_octet            = "${var.subnet_group_octets["bastion"]}"
   #instance_count               = "${var.vpc-main_az_count}" ##  ONE PER AZ
   instance_count                = "1"
-  instance_type                 = "t3.micro"
+  instance_type                 = "t3.small"
   base_strings                  = "${local.base_strings}"
   env_strings                   = "${local.env_strings}"
   chef_strings                  = "${local.chef_strings}"

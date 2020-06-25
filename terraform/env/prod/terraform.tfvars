@@ -9,17 +9,17 @@
 ##  TERRAFORM S3 REMOTE STATE VARS MUST CONFORM WITH THE VALUES IN terraform.tf
 tfstate_s3_bucket           = "acadience-tfstate"
 tfstate_s3_bucket_region    = "us-west-2"
-tfstate_key                 = "demo.tfstate"
+tfstate_key                 = "prod.tfstate"
 tfstate_ddb_lock_table      = "acadience-tfstate-lock"
 
 ##  ORGANIZATION AND ENVIRONMENT NAME
 ##  THESE ARE USED AS TAGS AND ALSO AFFECT RESOURCE NAMING
 org                         = "acadience" # I.E. "PRODUCT" NAME LIKE NEXIA, FREEDOMPOP, ALPHANUM - NO HYPHENS OR UNDERSCORES
-env                         = "demo" # I.E., "dev", "prod", ETC, ALPHANUM - NO HYPHENS OR UNDERSCORES
+env                         = "prod" # I.E., "dev", "prod", ETC, ALPHANUM - NO HYPHENS OR UNDERSCORES
 
 ##  OTHER GLOBAL RESOURCE TAGS
 owner                       = "dlieberman" # AWS TAG TO IDENTIFY ENGINEER OR GROUP RESPONSIBLE FOR THIS ENV
-billing_code                = "acadience-demo" # AWS TAG FOR BILLING ANALYSIS PURPOSES
+billing_code                = "acadience-prod" # AWS TAG FOR BILLING ANALYSIS PURPOSES
 
 ##  AWS ACCOUNT ID
 aws_account_id              = "695990525005" # BITPUSHER TF DEV ACCOUNT
@@ -91,7 +91,7 @@ public_parent_domain_ID     = "Z0930604216CUCRAGA0L9"
 
 ##  CHEF INTEGRATION
 chef_repo                   = "git@cgit01.bitpusher.com:acadience/infra" ##  CHANGE THIS TO YOUR GIT REPO NAME
-chef_environment            = "demo" ##  CHANGE THIS TO THE CHEF ENVIRONMENT YOU WISH TO USE FOR THIS ENV
+chef_environment            = "prod" ##  CHANGE THIS TO THE CHEF ENVIRONMENT YOU WISH TO USE FOR THIS ENV
 
 ##  PRIVATE CERTIFICATE AUTHORITY
 ##  DISABLED B/C IT IS TOO EXPENSIVE

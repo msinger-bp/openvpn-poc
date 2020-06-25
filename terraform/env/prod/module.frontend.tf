@@ -9,8 +9,8 @@ module "frontend" {
   ##  INSTANCE CLUSTER
   instance_subnet_group_octet = "${var.subnet_group_octets["frontend_instances"]}"
   placement_group_strategy    = "spread"
-  instance_count              = "3"
-  instance_type               = "t3.medium"
+  instance_count              = "1"
+  instance_type               = "m5.large"
   chef_role                   = "frontend_http"
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
