@@ -1,6 +1,8 @@
-
 ##  UNIQUE MODULE RESOURCE NAME
 variable "name"                               { type = "string" }
+
+##  ACM CERT FOR EXTERNAL ALB/443
+variable "acm_additional_sans"                { type = "list", default = [] }
 
 ##  ALB SUBNET OCTETS
 variable "alb-ext_subnet_group_octet"         { type = "string" }
