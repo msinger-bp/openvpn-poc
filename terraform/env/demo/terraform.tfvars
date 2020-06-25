@@ -2,7 +2,7 @@
 ##
 ##  ENVIRONMENT CONFIG
 ##
-##    * DIFFERENTIATES PROD/DEMO/DEV1/DEV2/...
+##    * DIFFERENTIATES PROD/STAGEDEV1/DEV2/...
 ##    * DOES NOT SUPPORT INTERPOLATION, SO SOME LITERALS ARE REPEATED AND MUST AGREE
 ##
 
@@ -59,9 +59,9 @@ subnet_group_octets         = {
   cluster2                  = "22"
   backend_alb               = "30"
   backend_instances         = "31"
-  frontend_alb              = "40"
-  frontend_http             = "41"
-  frontend_https            = "42"
+  frontend_instances        = "40"
+  frontend_alb-int          = "41"
+  frontend_alb-ext          = "42"
   nxcluster                 = "50"
   redis                     = "60"
   redis-cluster             = "61"
@@ -81,6 +81,7 @@ subnet_group_octets         = {
   galera2                   = "113"
   galera2-rds-backup        = "114"
   emr                       = "120"
+  lambda                    = "130"
   maindb                    = "160"
 }
 

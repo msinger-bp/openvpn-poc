@@ -1,15 +1,16 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.4.3"
+  source                      = "../../site-modules/frontend/0.5.0"
   name                        = "frontend"
   ##  ALB
-  alb_subnet_group_octet      = "${var.subnet_group_octets["frontend_alb"]}"
+  alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
+  alb-int_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-int"]}"
   ##  INSTANCE CLUSTER
-  instance_subnet_group_octet = "${var.subnet_group_octets["frontend_http"]}"
+  instance_subnet_group_octet = "${var.subnet_group_octets["frontend_instances"]}"
   placement_group_strategy    = "spread"
-  instance_count              = "3"
-  instance_type               = "t3.medium"
+  instance_count              = "1"
+  instance_type               = "t3.large"
   chef_role                   = "frontend_http"
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
@@ -26,5 +27,5 @@ module "frontend" {
   db-main_sg                  = "${module.maindb.master_sg_id}"
 }
 
-output "frontend_alb_public_cname"  { value = "${module.frontend.alb_public_cname}" }
-output "frontend_internal_cnames"   { value = "${module.frontend.internal_cnames}" }
+output "frontend_alb-ext_public_cname"  { value = "${module.frontend.alb-ext_public_cname}" }
+output "frontend_internal_cnames"       { value = "${module.frontend.internal_cnames}" }
