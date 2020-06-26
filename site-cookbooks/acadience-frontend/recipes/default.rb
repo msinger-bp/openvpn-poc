@@ -96,6 +96,7 @@ EOF
   end
 else #no migrate
   bash 'run-migrations' do
+    code 'true'
     action :nothing
   end
 end
