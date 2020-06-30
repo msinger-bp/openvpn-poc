@@ -83,6 +83,7 @@ subnet_group_octets         = {
   emr                       = "120"
   lambda                    = "130"
   maindb                    = "160"
+  monitoring_instances      = "140"
 }
 
 ##  PUBLIC ROUT53 ZONE - MUST PRE-EXIST AND BE IN THIS ACCOUNT
