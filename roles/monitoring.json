@@ -1,8 +1,9 @@
 {
     "name": "monitoring",
     "json_class": "Chef::Role",
-    "description": "monitoring role",
-    "run_list": [ "recipe[ref-monitoring::default]" ],
+    "description": "monitoring role", 
+    "run_list": [],
+    "xxxrun_list": [ "recipe[acadience-monitoring::default]" ],
     "default_attributes": { },
     "override_attributes": { },
     "chef_type": "role"
