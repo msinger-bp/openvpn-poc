@@ -1,0 +1,11 @@
+{
+  "id": "mlilly",
+  "ssh_keys": [
+	  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDI/U76x8Jp3oaPmMGfsXhw+Te21TqTkFin7YE8x3++sjdwsST4lMPNN/s9OSTTVmaDauRX/IEWi2tRPssUQ+hkmmptxsQRroaapecDtkFGiRSKbVm1DlrOeuMatnFC+tsGkf//8cJAlhFGnJCx9rvqotOtIUzZmeZYTsNxXbEeI1bUaVbf44iE/i8GsbjWiVpnvOAphVcuiXmZTF15mqhbESIWpMXUU9Q0aqTqsU6CeXs6RsIWCe++S1c3XBGR2ZIKQXhBVaWzXi2X34WiZKDINvU9+eZG/L89+27CAKJGGeuD61sLYRUzytYFZmMPYCxnkgCVMWUSiCHk4jqDYJyH mlilly@Bits-MBP.rpi4.mikerlilly.com"
+  ],
+  "uid": "11011",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}jPvO+NXypxL8pUKjTzx9qjFYqR8=",
+  "shell": "/bin/bash",
+  "comment": "Mike Lilly"
+}
