@@ -9,4 +9,4 @@ default['acadience-frontend']['env']['SMTP_PASS']='BCN5EDRQRne+FKHC5hYcN3gh2CGcv
 default['acadience-frontend']['env']['SMTP_HOST']='email-smtp.us-west-2.amazonaws.com'
 default['acadience-frontend']['env']['SMTP_POST']=587
 default['acadience-frontend']['env']['BASE_URL']='https://demo.alo.acadiencelearning.org'
-default['acadience-frontend']['env']['API_SHARED_SECRET']='wD@Derb240bdffn38MN(sacvessfgw'
+default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_demo'
