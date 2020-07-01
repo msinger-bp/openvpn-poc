@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.1"
+  source                      = "../../site-modules/frontend/0.5.2"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
@@ -12,6 +12,8 @@ module "frontend" {
   instance_count              = "3"
   instance_type               = "t3.medium"
   chef_role                   = "frontend_http"
+  ##  ELASTICACHE / REDIS
+  redis_subnet_group_octet    = "${var.subnet_group_octets["frontend_redis"]}"
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
   base_strings                = "${local.base_strings}"

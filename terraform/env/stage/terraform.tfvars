@@ -62,6 +62,7 @@ subnet_group_octets         = {
   frontend_instances        = "40"
   frontend_alb-int          = "41"
   frontend_alb-ext          = "42"
+  frontend_redis            = "43"
   nxcluster                 = "50"
   redis                     = "60"
   redis-cluster             = "61"

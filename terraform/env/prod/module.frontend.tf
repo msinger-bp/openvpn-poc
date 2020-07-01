@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.1"
+  source                      = "../../site-modules/frontend/0.5.2"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
@@ -12,6 +12,10 @@ module "frontend" {
   instance_count              = "3"
   instance_type               = "m5.large"
   chef_role                   = "frontend_http"
+  ##  ELASTICACHE / REDIS
+  redis_subnet_group_octet    = "${var.subnet_group_octets["frontend_redis"]}"
+  ##  ACM CERT SUBJECT ALTERNATIVE NAMES
+  acm_additional_sans         = [ "alo.acadiencelearning.org" ]
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
   base_strings                = "${local.base_strings}"
@@ -25,7 +29,6 @@ module "frontend" {
   tags                        = "${local.tags}"
   ecr_arn                     = "arn:aws:ecr:us-west-2:695990525005:repository/frontend"
   db-main_sg                  = "${module.maindb.master_sg_id}"
-  acm_additional_sans         = [ "alo.acadiencelearning.org" ]
 }
 
 output "frontend_alb-ext_public_cname"  { value = "${module.frontend.alb-ext_public_cname}" }
