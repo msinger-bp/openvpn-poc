@@ -75,8 +75,8 @@ env=[ "NODE_ENV=production",
       "DATABASE_USER=#{node['db']['username']}", 
       "DATABASE_PASSWORD=#{node['db']['password']}", 
       "SESSION_SECRET=foobarqwedfjkbdawdfjknawerjfkweFLEJKWFNjwefn132roinqedjdn",
-      "API_BASIC_AUTH=api_user:api_pass" #fixme use per-env later
-    ]
+      node[cookbook_name]['env'].map {|k,v| "#{k}=#{v}"}
+      ].flatten
 
 docker_image_prune 'frontend' do
   dangling false
