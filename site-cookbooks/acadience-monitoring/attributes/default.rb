@@ -60,10 +60,6 @@ default['nexia-prometheus']['prometheus']['cloudwatch-exporter']['period_seconds
 # For clownwatch-exporter
 default['redis_instance_ids'] = []
 
-default['mysql_instance_ids'] = [ node['terraform'][node.chef_environment]['modules'][0]['outputs']['ecofactor-oltp-mysql_master_id']['value'],
-                                  node['terraform'][node.chef_environment]['modules'][0]['outputs']['ecofactor-oltp-mysql_replica_ids']['value'],
-                                  node['terraform'][node.chef_environment]['modules'][0]['outputs']['ecofactor-quartz-mysql_id']['value'],
-                                  node['terraform'][node.chef_environment]['modules'][0]['outputs']['ecofactor-ts-mysql_master_id']['value'],
-                                  node['terraform'][node.chef_environment]['modules'][0]['outputs']['ecofactor-ts-mysql_replica_ids']['value']
+default['mysql_instance_ids'] = [ node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_id']['value']
                                 ].flatten # replica ids are in array form
 
