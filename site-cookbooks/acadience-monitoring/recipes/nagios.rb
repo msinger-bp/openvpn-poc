@@ -29,7 +29,7 @@ nagios_hostgroup 'disk-/srv' do
 end
 
 nagios_command 'check-predictive-disk-hours-until-full' do
-  options "command_line" => "$USER1$/negate --unknown=OK $USER1$/check_prometheus_metric.sh -H http://#{node['env_nagios']['prometheus_endpoint']}:9090 -q 'filesystem:filesystem_time_until_zero_free_hours:ratio_deriv1h{instance=~\"$HOSTNAME$.*\",mountpoint=\"$ARG1$\"} > 0' -n '$ARG1$ predictive free hours' -O -m le -t vector -w $ARG2$ -c $ARG3$"
+  options "command_line" => "$USER1$/negate --unknown=OK $USER1$/check_prometheus_metric.sh -H http://#{node[cookbook_name]['prometheus_endpoint']}:9090 -q 'filesystem:filesystem_time_until_zero_free_hours:ratio_deriv1h{instance=~\"$HOSTNAME$.*\",mountpoint=\"$ARG1$\"} > 0' -n '$ARG1$ predictive free hours' -O -m le -t vector -w $ARG2$ -c $ARG3$"
 end
 
 nagios_service "check-predictive-disk-hours-until-full-/" do
