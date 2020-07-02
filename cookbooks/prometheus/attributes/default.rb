@@ -6,7 +6,7 @@ default['prometheus']['config_file']          = "#{node['prometheus']['home_dir'
 default['prometheus']['retention_time']       = '365d' #current prom default is 15d, which is not useful in the slightest.  1y might be more useful
 default['prometheus']['user']                 = 'prometheus'
 default['prometheus']['group']                = node['prometheus']['user']
-default['prometheus']['flags']                = "--storage.tsdb.path=#{node['prometheus']['home_dir']}/data --config.file=#{node['prometheus']['config_file']} --storage.tsdb.retention.time=#{node['prometheus']['retention_time'}"
+default['prometheus']['flags']                = "--storage.tsdb.path=#{node['prometheus']['home_dir']}/data --config.file=#{node['prometheus']['config_file']} --storage.tsdb.retention.time=#{node['prometheus']['retention_time']}"
 default['alertmanager']['version']            = '0.14.0'
 default['alertmanager']['flags']              = ''
 default['alertmanager']['extra_flags']        = ''
