@@ -29,7 +29,7 @@ nagios_hostgroup 'disk-/srv' do
 end
 
 nagios_command 'check-predictive-disk-hours-until-full' do
-  options "command_line" => "$USER1$/negate --unknown=OK $USER1$/check_prometheus_metric.sh -H http://#{node[cookbook_name]['prometheus_endpoint']}:9090 -q 'filesystem:filesystem_time_until_zero_free_hours:ratio_deriv1h{instance=~\"$HOSTNAME$.*\",mountpoint=\"$ARG1$\"} > 0' -n '$ARG1$ predictive free hours' -O -m le -t vector -w $ARG2$ -c $ARG3$"
+  options "command_line" => "$USER1$/negate --unknown=OK $USER1$/check_prometheus_metric.sh -H http://#{node['acadience-monitoring']['prometheus_endpoint']}:9090 -q 'filesystem:filesystem_time_until_zero_free_hours:ratio_deriv1h{instance=~\"$HOSTNAME$.*\",mountpoint=\"$ARG1$\"} > 0' -n '$ARG1$ predictive free hours' -O -m le -t vector -w $ARG2$ -c $ARG3$"
 end
 
 nagios_service "check-predictive-disk-hours-until-full-/" do
@@ -105,7 +105,7 @@ end
 
 nagios_host 'prometheus-checks' do
   options 'use'                  => 'service-only-host',
-          'address'              => node['env_nagios']['prometheus_endpoint'],
+          'address'              => node['acadience-monitoring']['prometheus_endpoint'],
           'hostgroup_name'       => 'service-only-hosts'
 end
 
@@ -117,7 +117,7 @@ nagios_hostgroup 'redis-instances' do
 end
 
 nagios_command 'check-elasticache-engine-cpu-utilization' do
-  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['env_nagios']['prometheus_endpoint']}:9090 -q 'aws_elasticache_engine_cpuutilization_average{cache_cluster_id=\"$HOSTNAME$\"} offset 10m' -n '$HOSTNAME$ % Average CPU Utilization' -O -m ge -t vector -w $ARG1$ -c $ARG2$"
+  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['acadience-monitoring']['prometheus_endpoint']}:9090 -q 'aws_elasticache_engine_cpuutilization_average{cache_cluster_id=\"$HOSTNAME$\"} offset 10m' -n '$HOSTNAME$ % Average CPU Utilization' -O -m ge -t vector -w $ARG1$ -c $ARG2$"
 end
 
 nagios_service "check-elasticache-engine-cpu-utilization" do
@@ -129,7 +129,7 @@ nagios_service "check-elasticache-engine-cpu-utilization" do
 end
 
 nagios_command 'check-elasticache-freeable-memory' do
-  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['env_nagios']['prometheus_endpoint']}:9090 -q 'aws_elasticache_freeable_memory_average{cache_cluster_id=\"$HOSTNAME$\"} offset 10m / (1000 * 1000)' -n '$HOSTNAME$ Freeable Memory (MB)' -O -m lt -t vector -w $ARG1$ -c $ARG2$"
+  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['acadience-monitoring']['prometheus_endpoint']}:9090 -q 'aws_elasticache_freeable_memory_average{cache_cluster_id=\"$HOSTNAME$\"} offset 10m / (1000 * 1000)' -n '$HOSTNAME$ Freeable Memory (MB)' -O -m lt -t vector -w $ARG1$ -c $ARG2$"
 end
 
 nagios_service "check-elasticache-freeable-memory" do
@@ -166,7 +166,7 @@ nagios_service 'check-mysql-rds' do
 end
 
 nagios_command 'check-rds-free-storage' do
-  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['env_nagios']['prometheus_endpoint']}:9090 -q 'aws_rds_free_storage_space_average{dbinstance_identifier=\"$HOSTNAME$\"} offset 10m / (1000*1000*1000)' -n '$HOSTNAME$ RDS Free Storage Space (GB)' -O -m lt -t vector -w $ARG1$ -c $ARG2$"
+  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://#{node['acadience-monitoring']['prometheus_endpoint']}:9090 -q 'aws_rds_free_storage_space_average{dbinstance_identifier=\"$HOSTNAME$\"} offset 10m / (1000*1000*1000)' -n '$HOSTNAME$ RDS Free Storage Space (GB)' -O -m lt -t vector -w $ARG1$ -c $ARG2$"
 end
 
 nagios_service "check-rds-free-storage" do
@@ -179,7 +179,7 @@ end
 node['mysql_instance_ids'].each do |rds|
   nagios_host "#{rds}" do
     options 'use'                 => 'service-only-host',
-            'address'             => "#{rds}.#{node['env_nagios']['internal_domain']}",
+            'address'             => "#{rds}.#{node['acadience-monitoring']['internal_domain']}",
             'hostgroups'          => [ 'mysql-rds-endpoints' ]
   end
 end
@@ -207,7 +207,7 @@ nagios_contact 'bitpusher-critical-email' do
           'host_notification_commands'    => 'host_notify_by_email_not_default',
           'service_notification_options'  => 'u,c,r',
           'service_notification_commands' => 'service_notify_by_email_not_default',
-          'email'                         => node['env_nagios']['critical_email']
+          'email'                         => node['acadience-monitoring']['critical_email']
 end
 
 nagios_contact 'bitpusher-warning-email' do
@@ -217,7 +217,7 @@ nagios_contact 'bitpusher-warning-email' do
           'host_notification_commands'    => 'host_notify_by_email_not_default',
           'service_notification_options'  => 'w',
           'service_notification_commands' => 'service_notify_by_email_not_default',
-          'email'                         => node['env_nagios']['warning_email']
+          'email'                         => node['acadience-monitoring']['warning_email']
 end
 
 # This must be done last
