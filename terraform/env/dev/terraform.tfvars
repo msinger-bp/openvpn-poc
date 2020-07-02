@@ -82,6 +82,7 @@ subnet_group_octets         = {
   galera2                   = "113"
   galera2-rds-backup        = "114"
   emr                       = "120"
+  monitoring_instances      = "140"
   maindb                    = "160"
 }
 
