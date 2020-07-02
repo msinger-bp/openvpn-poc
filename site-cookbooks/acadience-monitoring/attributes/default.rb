@@ -1,6 +1,6 @@
-default['prometheus']['version'] = node['env_versions']['prometheus']
+default['prometheus']['version'] = '2.14.0'
 
-default['frontend_instances']     = node['terraform'][node.chef_environment]['modules'][0]['outputs']['frontend_internal_cnames']['value']
+default['frontend_instances'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['frontend_internal_cnames']['value']
 default['rds_instances'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['all_rds_endpoints']['value'].map {|i| i.split(':').first}
 
 default['mysqld_exporter']['version'] = '0.12.1'
