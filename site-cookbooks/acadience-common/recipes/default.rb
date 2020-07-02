@@ -10,4 +10,7 @@ package 'emacs-nox'
 package 'screen'
 package 'nano'
 
+include_recipe 'nrpe::default'
+include_recipe 'acadience-common::node_exporter'
+include_recipe 'acadience-common::nrpe'
 include_recipe 'acadience-common::motd'
