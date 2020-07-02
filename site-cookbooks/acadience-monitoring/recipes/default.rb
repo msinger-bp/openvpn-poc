@@ -5,6 +5,21 @@
   include_recipe i
 end
 
+directory '/etc/docker' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+end
+
+file '/etc/docker/daemon.json' do
+  owner 'root'
+  group 'root'
+  mode  '0644'
+  content "{\"metrics-addr\":\"#{node['ipaddress']}:9323\",\"experimental\":true}"
+end
+
+docker_installation 'default'
+
 include_recipe "#{cookbook_name}::cloudwatch_exporter"
 include_recipe "#{cookbook_name}::nagios"
 
