@@ -1,25 +1,5 @@
-# site-cookbooks/nexia-prometheus/recipes/query_exporter.rb
-# last edit 2019 Dec 23
 
-directory '/etc/docker' do
-  owner 'root'
-  group 'root'
-  mode  '0755'
-end
-
-file '/etc/docker/daemon.json' do
-  owner 'root'
-  group 'root'
-  mode  '0644'
-  content "{\"metrics-addr\":\"#{node['ipaddress']}:9323\",\"experimental\":true}"
-end
-
-docker_installation 'default'
-
-# needs to happen after docker is installed...
-include_recipe "#{cookbook_name}::ecr_auth"
-
-databases=%w{oltp ts quartz}.map {|i| [i, {'dsn' => "mysql://#{node['db_conn_params'][i]['admin']['username']}:#{node['db_conn_params'][i]['admin']['password']}@#{node['db_conn_params'][i]['admin']['endpoint']}/#{node['db_conn_params'][i]['admin']['schema']}"}]}.to_h
+databases=%w{maindb}.map {|i| [i, {'dsn' => "mysql://#{node['dsn'][i]['username']}:#{node['dsn'][i]['password']}@#{node['dsn'][i]['endpoint']}/#{node['dsn'][i]['schema']}"}]}.to_h
 
 metrics={'nexia_ee_active_thermostats'     => {"type" => "gauge", "description" => "Number of active thermostats"},
          'nexia_ee_subscribed_thermostats' => {"type" => "gauge", "description" => "Number of thermostats with EE subscription"},

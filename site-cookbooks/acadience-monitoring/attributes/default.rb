@@ -64,3 +64,9 @@ default['mysql_instance_ids'] = [ node['terraform'][node.chef_environment]['modu
                                 ].flatten # replica ids are in array form
 
 default['acadience-monitoring']['prometheus_endpoint'] = 'localhost'
+
+default['dsn']['maindb']['schema']   = 'app'
+default['dsn']['maindb']['endpoint'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_endpoint']['value']
+default['dsn']['maindb']['username'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_admin_username']['value']
+default['dsn']['maindb']['password'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_admin_password']['value']
+
