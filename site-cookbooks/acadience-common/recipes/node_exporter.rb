@@ -1,5 +1,5 @@
 file '/etc/default/prometheus-node-exporter' do
-  contents <<EOF
+  content <<EOF
 ARGS="--collector.diskstats.ignored-devices=^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$ \
       --collector.filesystem.ignored-mount-points=^/(var/lib/docker|sys|proc|dev|run)($|/) \
       --collector.netdev.ignored-devices=^lo$ \
