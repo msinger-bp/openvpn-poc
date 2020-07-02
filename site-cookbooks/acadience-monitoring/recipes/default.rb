@@ -15,6 +15,12 @@ cookbook_file '/usr/lib/nagios/plugins/check_prometheus_metric.sh' do
   mode  '0755'
 end
 
+directory "/var/lib/prometheus/node-exporter" do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+end
+
 # check_prometheus needs jq
 package 'jq'
 
