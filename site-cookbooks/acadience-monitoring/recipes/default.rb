@@ -21,6 +21,7 @@ end
 docker_installation 'default'
 
 include_recipe "#{cookbook_name}::cloudwatch_exporter"
+include_recipe "#{cookbook_name}::query_exporter"
 include_recipe "#{cookbook_name}::nagios"
 
 cookbook_file '/usr/lib/nagios/plugins/check_prometheus_metric.sh' do
