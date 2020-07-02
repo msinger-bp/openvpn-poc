@@ -25,7 +25,7 @@ prometheus_job "node_exporter" do
   action :create
 end
 
-docker_instances=[node['terraform'][node.chef_environment]['modules'][0]['outputs']['docker_instances']['value']].flatten.sort
+docker_instances=[node['terraform'][node.chef_environment]['modules'][0]['outputs']['frontend_instances']['value']].flatten.sort
 
 prometheus_job "docker" do
   target docker_instances.map{|i| "#{i}:9323"}
