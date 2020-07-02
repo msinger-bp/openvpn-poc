@@ -1,5 +1,3 @@
-include_recipe "#{cookbook_name}::users"
-
 %w(prometheus::install_prometheus
    prometheus::install_pushgateway
    prometheus::configure_prometheus
