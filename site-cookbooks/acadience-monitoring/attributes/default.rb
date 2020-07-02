@@ -35,8 +35,6 @@ normal['nagios']['server']['nginx_dispatch']['type']    = 'both'
 #default['nexia-prometheus']['nagios-pagerduty']['prod']['host_notification_options']    = 'd,r'
 #default['nexia-prometheus']['nagios-pagerduty']['prod']['contactgroups']                = [ 'admins' ]
 
-# note that I added contactgroups manually to the nagios cookbook, and this is in the bitpusher reference nagios cookbook
-normal['nagios']['pagerduty']                                  = ""
 #normal['nagios']['pagerduty']['key']                          = node['nexia-prometheus']['nagios-pagerduty'][node.chef_environment]['key']
 #normal['nagios']['pagerduty']['service_notification_options'] = node['nexia-prometheus']['nagios-pagerduty'][node.chef_environment]['service_notification_options']
 #normal['nagios']['pagerduty']['host_notification_options']    = node['nexia-prometheus']['nagios-pagerduty'][node.chef_environment]['host_notification_options']
