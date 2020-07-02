@@ -1,7 +1,7 @@
 default['prometheus']['version'] = '2.14.0'
 
 default['frontend_instances'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['frontend_internal_cnames']['value']
-default['rds_instances'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['all_rds_endpoints']['value'].map {|i| i.split(':').first}
+default['rds_instances'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_endpoint']['value'].split(':').first
 
 default['mysqld_exporter']['version'] = '0.12.1'
 default['mysqld_exporter']['url']     = "https://github.com/prometheus/mysqld_exporter/releases/download/v#{node['mysqld_exporter']['version']}/mysqld_exporter-#{node['mysqld_exporter']['version']}.linux-amd64.tar.gz"
