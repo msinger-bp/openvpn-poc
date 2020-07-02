@@ -6,7 +6,7 @@ default['rds_instances'] = [node['terraform'][node.chef_environment]['modules'][
 default['mysqld_exporter']['version'] = '0.12.1'
 default['mysqld_exporter']['url']     = "https://github.com/prometheus/mysqld_exporter/releases/download/v#{node['mysqld_exporter']['version']}/mysqld_exporter-#{node['mysqld_exporter']['version']}.linux-amd64.tar.gz"
 
-default['acadience-monitoring']['query-exporter']['repo']                  = '438308380087.dkr.ecr.us-east-1.amazonaws.com/prom/query-exporter'
+default['acadience-monitoring']['query-exporter']['repo']                  = '695990525005.dkr.ecr.us-west-2.amazonaws.com/prom/query-exporter'
 default['acadience-monitoring']['query-exporter']['tag']                   = 'latest'
 default['acadience-monitoring']['cloudwatch-exporter']['repo']             = 'prom/cloudwatch-exporter'
 default['acadience-monitoring']['cloudwatch-exporter']['tag']              = 'cloudwatch_exporter-0.6.0'
