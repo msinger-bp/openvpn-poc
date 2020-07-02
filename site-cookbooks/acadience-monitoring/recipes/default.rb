@@ -20,6 +20,7 @@ end
 
 docker_installation 'default'
 
+include_recipe "#{cookbook_name}::ecr_auth"
 include_recipe "#{cookbook_name}::cloudwatch_exporter"
 include_recipe "#{cookbook_name}::query_exporter"
 include_recipe "#{cookbook_name}::nagios"
