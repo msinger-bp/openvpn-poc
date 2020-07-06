@@ -5,7 +5,7 @@ module "monitoring" {
   ##  INSTANCE CLUSTER
   subnet_group_octet    = "${var.subnet_group_octets["monitoring_instances"]}"
   instance_type         = "t3.medium"
-  ecr_arn               = "arn:aws:ecr:us-west-2:695990525005:repository/monitoring"
+  ecr_arn               = "arn:aws:ecr:us-west-2:695990525005:prom/query-exporter"
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings           = "${local.env_strings}"
   base_strings          = "${local.base_strings}"
