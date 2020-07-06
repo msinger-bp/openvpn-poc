@@ -1,9 +1,3 @@
-# site-cookbooks/nexia-prometheus/recipes/nagios.rb
-# last edit 2020 Jan 09
-
-#----------
-# basic checks
-
 nagios_command "check_all_disks" do
   options "command_line"        => "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_all_disks"
 end
