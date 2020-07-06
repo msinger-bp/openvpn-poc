@@ -50,35 +50,6 @@ nagios_service "check-predictive-disk-hours-until-full-/srv-10day" do
           'notes_url'             => 'https://mwiki.bitpusher.com/index.php/Nexia_Runbook#check-predictive-disk-hours-until-full'
 end
  
-nagios_command 'check-cpu-average' do
-  options "command_line" => "$USER1$/check_prometheus_metric.sh -H http://localhost:9090 -q 'cpu:cpu_utilization:percent_avg$ARG1${instance=~\"$HOSTNAME$.*\"}' -n 'CPU usage $ARG1$ average' -O -m ge -t vector -w $ARG2$ -c $ARG3$"
-end
-
-nagios_service "check-cpu-average-15m" do
-  options 'use'                  => 'default-service',
-          'description'          => 'check 15m cpu average',
-          'service_template'     => 'default-service',
-          'check_command'        => 'check-cpu-average!15m!90!93',
-          'hostgroup_name'       => 'linux',
-          'contact_groups'       => 'admins-email-only'
-end
-  
-nagios_service "check-cpu-average-5m" do
-  options 'use'                 => 'default-service',
-          'description'         => 'check 5m cpu average',
-          'service_template'    => 'default-service',
-          'check_command'       => 'check-cpu-average!5m!80!95',
-          'hostgroup_name'      => 'linux'
-end
-  
-nagios_service "check-cpu-average-1m" do
-  options 'use'                 => 'default-service',
-          'description'         => 'check 1m cpu average',
-          'service_template'    => 'default-service',
-          'check_command'       => 'check-cpu-average!1m!90!99',
-          'hostgroup_name'      => 'linux'
-end
-
 nagios_command 'check-dummy' do
   options 'command_line'        => "$USER1$/check_dummy 0 'dummy check'"
 end
