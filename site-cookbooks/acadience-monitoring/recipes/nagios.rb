@@ -150,7 +150,7 @@ end
 node['mysql_instance_ids'].each do |rds|
   nagios_host "#{rds}" do
     options 'use'                 => 'service-only-host',
-            'address'             => "#{rds}.#{node['acadience-monitoring']['internal_domain']}",
+            'address'             => "#{rds}",
             'hostgroups'          => [ 'mysql-rds-endpoints' ]
   end
 end
