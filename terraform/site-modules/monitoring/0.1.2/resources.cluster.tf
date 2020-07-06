@@ -37,7 +37,7 @@ module "cluster" {
     list(aws_iam_policy.cloudwatch-read-only.arn),
     list(aws_iam_policy.ecr.arn)
   ) }"
-  addl_iam_policy_count             = "3" ##  MUST BE MANUALLY TALLIED AND AN INTEGER ENTERED HERE
+  addl_iam_policy_count             = "4" ##  MUST BE MANUALLY TALLIED AND AN INTEGER ENTERED HERE
   ##  CHEF INTEGRATION
   chef_strings                      = "${var.chef_strings}"
   tf_state_vars                     = "${var.terraform_strings}"
