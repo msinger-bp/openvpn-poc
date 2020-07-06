@@ -11,3 +11,6 @@ default['acadience-frontend']['env']['SMTP_POST']=587
 default['acadience-frontend']['env']['EMAIL_FROM']='no-reply@dev.alo.acadiencelearning.org'
 default['acadience-frontend']['env']['BASE_URL']='https://dev.alo.acadiencelearning.org'
 default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_dev'
+
+default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']="jordan.weiler+1@emberex.com"
+
