@@ -34,8 +34,8 @@ module "cluster" {
   addl_iam_policy_arns              = "${ concat(
     var.chef_lists["iam_policy_arns"],
     var.addl_iam_policy_arns,
-    list(aws_iam_policy.ecr.arn),
-    list(aws_iam_policy.cloudwatch-read-only.arn)
+    list(aws_iam_policy.cloudwatch-read-only.arn),
+    list(aws_iam_policy.ecr.arn)
   ) }"
   addl_iam_policy_count             = "3" ##  MUST BE MANUALLY TALLIED AND AN INTEGER ENTERED HERE
   ##  CHEF INTEGRATION

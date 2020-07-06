@@ -1,6 +1,6 @@
 ##  MONITORING / NAGIOS
 module "monitoring" {
-  source                = "../../site-modules/monitoring/0.1.1"
+  source                = "../../site-modules/monitoring/0.1.2"
   name                  = "monitoring"
   ##  INSTANCE CLUSTER
   subnet_group_octet    = "${var.subnet_group_octets["monitoring_instances"]}"
