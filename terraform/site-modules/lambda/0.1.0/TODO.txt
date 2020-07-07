@@ -1,0 +1,7 @@
+The SFTP service(which use lambdas) is made up of the following components:
+* S3 - 1 bucket
+* IAM - 2 customer policies, 4 roles
+* API Gateway - 1 REST api
+* Lambda - 2 Functions, one called by API gateway, the other by S3
+* AWS Transfer Family - 1 server
+
