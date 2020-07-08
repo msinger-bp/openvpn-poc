@@ -10,13 +10,13 @@ file '/etc/docker/daemon.json' do
   mode  '0644'
   content <<EOF
 {
-  "metrics-addr":"#{node['ipaddress']}:9323",
-  "experimental":true,
+  "metrics-addr": "#{node['ipaddress']}:9323",
+  "experimental": true,
   "log-driver": "awslogs",
   "log-opts": {
     "awslogs-region": "us-west-2",
     "awslogs-group": "/frontend/#{node['environment_name']}",
-    "awslogs-create-group": true
+    "awslogs-create-group": "true"
   }
 }
 EOF
