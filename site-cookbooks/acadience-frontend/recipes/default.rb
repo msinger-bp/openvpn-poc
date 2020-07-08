@@ -8,7 +8,18 @@ file '/etc/docker/daemon.json' do
   owner 'root'
   group 'root'
   mode  '0644'
-  content "{\"metrics-addr\":\"#{node['ipaddress']}:9323\",\"experimental\":true}"
+  content <<EOF
+{
+  "metrics-addr":"#{node['ipaddress']}:9323",
+  "experimental":true,
+  "log-driver": "awslogs",
+  "log-opts": {
+    "awslogs-region": "us-west-2",
+    "awslogs-group": "/frontend/#{node['environment_name']}",
+    "awslogs-create-group": true
+  }
+}
+EOF
 end
 
 docker_installation 'default'
