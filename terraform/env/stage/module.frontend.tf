@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.2"
+  source                      = "../../site-modules/frontend/0.5.3"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
