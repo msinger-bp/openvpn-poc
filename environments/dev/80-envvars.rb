@@ -12,5 +12,4 @@ default['acadience-frontend']['env']['EMAIL_FROM']='no-reply@dev.alo.acadiencele
 default['acadience-frontend']['env']['BASE_URL']='https://dev.alo.acadiencelearning.org'
 default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_dev'
 
-default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']="jordan.weiler+1@emberex.com"
-
+default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']='jordan.weiler+aloDev@emberex.com,justin.olesen+aloDev@emberex.com,dan.fine+aloDev@emberex.com'
