@@ -1,0 +1,12 @@
+{
+  "id": "msinger",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXyrcolycRE56rv3IO0q05UrZJupi4scJLjJ13dfoj1XpCgERq2EaAjYlDvxR32MUDapdRBEyVE+i1njz+GQXJ/N873fa+n1kxHlAaJkYKLEgE41wdSserlfFd7FQMd8+YJFpM36aNKs0uULKFzsT3J87NeVRKd49WLQpDDjI8hqd9BJJTQ0Hrqf8I9qJCUfgBQLqDdQUpJftvBdN8z/YjEFy2k95BsAKrYpMx2buSTDW/7D0TZMNye78w/bQfBj0XSm1TQH3s+TH8gBPxBc/yOQtzKyNHgRfPRRreO5kCr4XUkjfLuiLE2ZrdQiAnH/N4SUApmcSuYltzig5T97bz martin@Martins-Mac-mini.local",
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYH0jBF2iW3sZkNfVvZhaWNe8dKrjrX/o+jiDfjChyR3JHhCobuxOfYHA7WarkHrUbgkFEc65PjwkmimyuygPTH7cJxODRJ+x8L0LD0Mmhu0TPuXKrUnXGtTa8Mffy5MMMhxwasFJe9pYadHfkU61UWKDggUbNJK9Lvhs+FthCKLEXQ7Btmppj6QHItG9Q0APpO5sliW01ed10XuhKxWF4Ou1Yabhk/C/Zuw74Fti/DoUtZQqTduPGfvvsDg1Dm3I3/oQdlAaEUQaQeqmS8iVUQeW+BDcXaMPQb4pQWv1o6CtGNEKvb5MRGQkLqeTGQX+onQr20IeXFDk9uW5kcPYL .ssh/id_rsa"
+  ],
+  "uid": "11012",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}jPvO+NXypxL8pUKjTzx9qjFYqR8=",
+  "shell": "/bin/bash",
+  "comment": "Martin Singer"
+}
