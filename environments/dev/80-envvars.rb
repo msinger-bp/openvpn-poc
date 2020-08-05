@@ -13,3 +13,6 @@ default['acadience-frontend']['env']['BASE_URL']='https://dev.alo.acadiencelearn
 default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_dev'
 
 default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']='jordan.weiler+aloDev@emberex.com,justin.olesen+aloDev@emberex.com,dan.fine+aloDev@emberex.com'
+
+default['acadience-frontend']['env']['SESSION_EXPIRATION']=1800000
+default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_MINUTES']=40

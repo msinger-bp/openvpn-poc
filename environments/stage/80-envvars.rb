@@ -14,3 +14,5 @@ default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_
 
 default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']="jordan.weiler+aloStage@emberex.com,justin.olesen+aloStage@emberex.com,dan.fine+aloStage@emberex.com"
 
+default['acadience-frontend']['env']['SESSION_EXPIRATION']=1800000
+default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_MINUTES']=40

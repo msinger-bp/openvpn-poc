@@ -11,3 +11,6 @@ default['acadience-frontend']['env']['SMTP_POST']=587
 default['acadience-frontend']['env']['EMAIL_FROM']='Acadience Learning Online <no-reply@alo.acadiencelearning.org>'
 default['acadience-frontend']['env']['BASE_URL']='https://alo.acadiencelearning.org'
 default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_prod'
+
+default['acadience-frontend']['env']['SESSION_EXPIRATION']=1800000
+default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_MINUTES']=40
