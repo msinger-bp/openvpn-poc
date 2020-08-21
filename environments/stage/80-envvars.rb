@@ -1,4 +1,4 @@
-default['acadience-frontend']['env']['IMPORT_ROSTER_CHUNK_SIZE_SCHOOLS']=0
+default['acadience-frontend']['env']['IMPORT_ROSTER_CHUNK_SIZE_SCHOOLS']=10000000
 default['acadience-frontend']['env']['IMPORT_ROSTER_CHUNK_SIZE_CLASSES']=0
 default['acadience-frontend']['env']['IMPORT_ROSTER_CHUNK_SIZE_STAFF']=100
 default['acadience-frontend']['env']['IMPORT_ROSTER_CHUNK_SIZE_STAFF_ENROLLMENTS']=1000
