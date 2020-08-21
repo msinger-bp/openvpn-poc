@@ -78,6 +78,15 @@ directory "/srv/acadience/frontend/pm2" do
   action :create
 end
 
+%w{frontend-1 frontend-2 frontend-3 frontend-4}.each do |i|
+  directory "/srv/acadience/frontend/pm2/#{i}" do
+    owner  node[cookbook_name]['container']['user']
+    group  node[cookbook_name]['container']['group']
+    mode   "0755"
+    action :create
+  end
+end
+
 directory "/srv/acadience/frontend/tmp" do
   owner  node[cookbook_name]['container']['user']
   group  node[cookbook_name]['container']['group']
