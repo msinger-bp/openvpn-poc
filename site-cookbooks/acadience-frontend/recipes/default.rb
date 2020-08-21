@@ -148,7 +148,7 @@ end
     network_mode   'host'
     env            c_env
 #    log_opts       [ 'max-size=10M', 'max-file=5' ]
-    volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp', '/srv/acadience/frontend/pm2:/app/.pm2' ]
+    volumes        [ '/srv/acadience/frontend/config:/config', '/srv/acadience/frontend/data:/data', '/srv/acadience/frontend/tmp:/tmp', '/srv/acadience/frontend/pm2/frontend-#{i}:/app/.pm2' ]
     ro_rootfs      true
     cap_drop       [ 'CHOWN', 'DAC_OVERRIDE', 'FOWNER', 'MKNOD', 'SETGID', 'SETUID', 'SETFCAP', 'SETPCAP', 'NET_BIND_SERVICE', 'KILL' ]
     ignore_failure true
