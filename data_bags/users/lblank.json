@@ -1,0 +1,11 @@
+{
+  "id": "lblank",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC4/w2U3OHbwGEIM17xCQEZni7HoxFfAz/HOoC1ASnup8olcclWSW0zZuLBLbaYTu7rllgIsL5oAD+WuRfvKx/qzXzCAGiKRyn6ytRQRUDgUQm5pZhwoj8L1pzmgKzfpyAfe57rYYYzbo9bAJDQzeHZyjA7bSLLmmFuErGokXWxTx/QPglIfPfTCNSrOiBX1qjcPh3QyLTlzflRLWlj2UvHW456l/9+xBTg/5Y3U9h6xAGCDfjS1AtqXy4C25/EkL7X4kAY+4OpD5QnAhDeSWsbCd3VNUIcvdcNkEEmaCN2kvRvvEF19iAbV/31kIgV4MdA99eB30C++fQJ/iP7lmpHx/X49uhfBsQda7FqkAcUkeimKYCOIPKTCDIr9dQ2aMVAjaZsVg3Jzy4lAFiLZkiVYvIv/Fg6xAjI3Wm1tX2xhpeFuCRhEMjtroNUd2TRNcxKm2wwhv3T3lYfRMBCkDkHcX5e2o8M487yqhvI+AGB5AnCV9+n9zCY+4ybaOcIC00= leah@Constellation.attlocal.net"
+  ],
+  "uid": "11013",
+  "groups": [ "sysadmin", "adm", "docker" ],
+  "htpasswd": "{SHA}mnwsaShp9LRcyG+PY35fQzTV8C0=",
+  "shell": "/bin/bash",
+  "comment": "J. Leah Blank"
+}
