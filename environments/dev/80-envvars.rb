@@ -12,7 +12,9 @@ default['acadience-frontend']['env']['EMAIL_FROM']='Acadience Learning Online (d
 default['acadience-frontend']['env']['BASE_URL']='https://dev.alo.acadiencelearning.org'
 default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_dev'
 
-default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']='jordan.weiler+aloDev@emberex.com,justin.olesen+aloDev@emberex.com,dan.fine+aloDev@emberex.com'
+# default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']='jordan.weiler+aloDev@emberex.com,justin.olesen+aloDev@emberex.com,dan.fine+aloDev@emberex.com'
+default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']='aloemailoverride@emberex.com'
+
 
 default['acadience-frontend']['env']['SESSION_EXPIRATION']=30
 default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_EXPIRATION']=40
