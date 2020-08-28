@@ -42,6 +42,7 @@ variable "vpc_lists"                          { type = "map" }
 variable "az_count"                           { type = "string" }
 variable "ecr_arn"                            { type = "string" }
 variable "db-main_sg"                         { type = "string" }
+variable "bastion_sg"                         { type = "string" }
 
 ##  ALB MODULE CONFIG
 # The time in seconds that the connection is allowed to be idle

@@ -29,6 +29,7 @@ module "frontend" {
   tags                        = "${local.tags}"
   ecr_arn                     = "arn:aws:ecr:us-west-2:695990525005:repository/frontend"
   db-main_sg                  = "${module.maindb.master_sg_id}"
+  bastion_sg                  = "${module.bastion.sg_id}"
 }
 
 output "frontend_alb-ext_public_cname"  { value = "${module.frontend.alb-ext_public_cname}" }
