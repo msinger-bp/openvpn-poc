@@ -1,7 +1,7 @@
 module "maindb" {
   source                  = "../../site-modules/rds-mysql/0.1.0"
   name                    = "maindb"
-  replica_count           = "0"
+  replica_count           = "1"
   master_multi_az         = "true"
   subnet_group_octet      = "${var.subnet_group_octets["maindb"]}"
   ##  FOR VERSION COMPATIBILITY, CONSULT https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
