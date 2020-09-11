@@ -33,3 +33,4 @@ module "frontend" {
 output "frontend_alb-ext_public_cname"  { value = "${module.frontend.alb-ext_public_cname}" }
 output "frontend_internal_cnames"       { value = "${module.frontend.internal_cnames}" }
 output "frontend_alb-int_public_cname"  { value = "${module.frontend.alb-int_public_cname}" }
+output "frontend_redis"                 { value = "${module.frontend.redis_primary_endpoint}" }
