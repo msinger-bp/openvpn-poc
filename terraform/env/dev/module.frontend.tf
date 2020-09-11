@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.3"
+  source                      = "../../site-modules/frontend/0.5.4"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
@@ -33,4 +33,4 @@ module "frontend" {
 output "frontend_alb-ext_public_cname"  { value = "${module.frontend.alb-ext_public_cname}" }
 output "frontend_internal_cnames"       { value = "${module.frontend.internal_cnames}" }
 output "frontend_alb-int_public_cname"  { value = "${module.frontend.alb-int_public_cname}" }
-output "frontend_redis"                 { value = "${module.frontend.redis_primary_endpoint}" }
+output "frontend_redis"                 { value = "${module.frontend.redis_dns_name}" }
