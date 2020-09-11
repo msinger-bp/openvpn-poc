@@ -9,6 +9,6 @@ default['acadience-frontend']['container']['gid']   = 500
 
 default['db']['host']       = node['terraform'][node.chef_environment]['modules'][0]['outputs']['maindb_endpoint']['value']
 default['socketio']['host'] = node['terraform'][node.chef_environment]['modules'][0]['outputs']['frontend_socketio_redis']['value']
-default['socketio']['port'] = 6309
+default['socketio']['port'] = 6379
 
 
