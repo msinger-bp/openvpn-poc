@@ -101,7 +101,7 @@ env=[ "NODE_ENV=production",
       "DATABASE_HOST=#{node['db']['host'].split(':').first}", 
       "DATABASE_USER=#{node['db']['username']}", 
       "DATABASE_PASSWORD=#{node['db']['password']}", 
-      "SOCKETIO_REDIS=#{node['socketio']['host']}:#{node['socketio']['port']}}",
+      "SOCKETIO_REDIS=#{node['socketio']['host']}:#{node['socketio']['port']}",
       "SESSION_SECRET=foobarqwedfjkbdawdfjknawerjfkweFLEJKWFNjwefn132roinqedjdn",
       node[cookbook_name]['env'].map {|k,v| "#{k}=#{v}"}
       ].flatten
