@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.5"
+  source                      = "../../site-modules/frontend/0.5.4"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
@@ -14,6 +14,19 @@ module "frontend" {
   chef_role                   = "frontend_http"
   ##  ELASTICACHE / REDIS
   redis_subnet_group_octet    = "${var.subnet_group_octets["frontend_redis"]}"
+  ##  ACM CERT SUBJECT ALTERNATIVE NAMES
+#  acm_additional_sans         = [ "training.${local.base_strings["public_subdomain_name"]}" ]
+
+# Still fails...
+#  acm_additional_sans         = [ "training.dev.alo.acadiencelearning.org" ]
+
+# Even this fails... (thought maybe creating something outside 'dev.alo...' would fix it, but no)
+#  acm_additional_sans         = [ "trainingdev.alo.acadiencelearning.org" ]
+
+# This also fails... (this is the most direct parallel to "alo.acadiencelearning.org",
+# which works in prod)
+
+  acm_additional_sans         = [ "alo.acadiencelearning.org" ]
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
   base_strings                = "${local.base_strings}"
