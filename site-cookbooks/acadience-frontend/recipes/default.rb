@@ -101,10 +101,12 @@ env=[ "NODE_ENV=production",
       "DATABASE_HOST=#{node['db']['host'].split(':').first}", 
       "DATABASE_USER=#{node['db']['username']}", 
       "DATABASE_PASSWORD=#{node['db']['password']}", 
-      "SOCKETIO_REDIS=//#{node['socketio']['host']}:#{node['socketio']['port']}",
       "SESSION_SECRET=foobarqwedfjkbdawdfjknawerjfkweFLEJKWFNjwefn132roinqedjdn",
       node[cookbook_name]['env'].map {|k,v| "#{k}=#{v}"}
       ].flatten
+
+#this is a temporary hack, do not copy or idolize
+env << "SOCKETIO_REDIS=//#{node['socketio']['host']}:#{node['socketio']['port']}" if node.chef_environment == 'dev'
 
 docker_image_prune 'frontend' do
   dangling false
