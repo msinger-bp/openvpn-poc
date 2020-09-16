@@ -12,8 +12,27 @@ module "frontend" {
   instance_count              = "3"
   instance_type               = "t3.medium"
   chef_role                   = "frontend_http"
+
   ##  ELASTICACHE / REDIS
   redis_subnet_group_octet    = "${var.subnet_group_octets["frontend_redis"]}"
+
+  ##  ACM CERT SUBJECT ALTERNATIVE NAMES
+  ##
+  ##  *IMPORTANT NOTE!* When updating acm_additional_sans, you will have to
+  ##                    MANUALLY destroy and rebuild:
+  ##                    module.frontend.module.acm.aws_acm_certificate.this
+  ##
+  ##                    This will also DESTROY any listeners that use the cert!
+  ##                    This is because in the acm module, invoked from
+  ##                    site-modules/frontend module, we've set ignore_changes
+  ##                    on subject_alternative_names. THIS IS NEEDED due to
+  ##                    obscure historical reasons (per @acutchin). Sorry!
+  ## Example:
+  ## tf destroy -target=module.frontend.module.acm.aws_acm_certificate.this
+  ## tf apply # rebuild what got destroyed, along with the new SANs
+
+  acm_additional_sans         = [ "training.${local.base_strings["public_subdomain_name"]}" ]
+
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
   base_strings                = "${local.base_strings}"
