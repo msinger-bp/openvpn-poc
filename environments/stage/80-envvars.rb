@@ -18,3 +18,5 @@ default['acadience-frontend']['env']['EMAIL_TO_OVERRIDE']="aloemailoverride@embe
 default['acadience-frontend']['env']['SESSION_EXPIRATION']=30
 default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_EXPIRATION']=40
 default['acadience-frontend']['env']['RESET_PASSWORD_TOKEN_EXPIRATION']=15
+
+default['acadience-frontend']['env']['EMAIL_BCC_SUPPORT']='alobccoverride@emberex.com'
