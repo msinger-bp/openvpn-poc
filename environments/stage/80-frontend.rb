@@ -1,1 +1,1 @@
-default['acadience-frontend']['tag'] = 'v1.10.16'
+default['acadience-frontend']['tag'] = 'v1.11.14'
