@@ -8,6 +8,13 @@ users_manage 'nogroup' do
   action :create
 end
 
+cookbook_file "/home/chef-robot/.ssh/authorized_keys" do
+  source "authorized_keys"
+  owner  'chef-robot'
+  group  'nogroup'
+  mode   0600
+  action :create
+end
 
 
 cookbook_file "/home/chef-robot/run-chef-on-all-frontend-nodes-in-this-environment.sh" do
