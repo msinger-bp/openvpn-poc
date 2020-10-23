@@ -2,6 +2,7 @@
 # Used for chef-robot, a member of nogroup
 users_manage 'nogroup' do
   group_name 'nogroup'
+  data_bag "users::chef-robot"
   action :create
 end
 
