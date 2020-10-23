@@ -39,6 +39,6 @@ if node.run_list.roles.include?('bastion')
     mode   0440
     action :create
   end
-end
+then
 
 
