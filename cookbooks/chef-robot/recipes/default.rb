@@ -33,7 +33,7 @@ end
 if node.run_list.roles.include?('bastion') do
   # Bastion host needs the ability to run "sudo git pull".
   cookbook_file "/etc/sudoers.d/chef-robot-bastion"
-    source "chef-robot-bastion";
+    source "chef-robot-bastion"
     owner  'root'
     group  'root'
     mode   0440
