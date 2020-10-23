@@ -33,6 +33,7 @@
 AM_I_BASTION=`hostname | grep "\-bastion\-" | wc -l`;
 
 if [ $AM_I_BASTION -gt 0 ]; then
+	echo "I think I am a bastion host... I will try to SSH to frontend hosts and make them run chef.";
 	# "-bastion-" detected in the output of "hostname".
 	# I think I am the bastion node. SSH into each -frontend- node,
 	# and run myself (which should run 'sudo chef-client') on them,
@@ -40,11 +41,12 @@ if [ $AM_I_BASTION -gt 0 ]; then
 	sleep 2; # Just in case a frontend box thinks it's a bastion and
 	         # causes an infinite loop
 	for I in $(ls -1 /var/chef/nodes | grep -- '-frontend-' | sed -e 's:.json::g'); do
-		ssh $I run-chef-on-all-frontend-nodes-in-this-environment.sh;
+		ssh -t $I run-chef-on-all-frontend-nodes-in-this-environment.sh;
 	done
 else
 	AM_I_FRONTEND=`hostname | grep "\-frontend\-" | wc -l`;
 	if [ $AM_I_FRONTEND -gt 0 ]; then
+		echo "I think I am a frontend host... I will try to run chef.";
 		# "-frontend-" detected in the output of "hostname".
 		# I think I am a frontend node. Run sudo chef-client.
 		sudo chef-client
