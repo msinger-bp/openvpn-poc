@@ -11,12 +11,6 @@ users_manage 'sysadmin' do
   action :create
 end
 
-# Used for chef-robot, a member of nogroup
-users_manage 'nogroup' do
-  group_name 'nogroup'
-  action :create
-end
-
 sudo "sysadmin" do
   group "sysadmin"
   nopasswd true

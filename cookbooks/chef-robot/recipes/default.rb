@@ -1,8 +1,10 @@
-# chef-robot, a member of nogroup
-users_manage 'chef-robot' do
+
+# Used for chef-robot, a member of nogroup
+users_manage 'nogroup' do
   group_name 'nogroup'
   action :create
 end
+
 
 
 cookbook_file "/home/chef-robot/run-chef-on-all-frontend-nodes-in-this-environment.sh" do
