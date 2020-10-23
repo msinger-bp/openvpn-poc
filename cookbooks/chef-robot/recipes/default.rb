@@ -30,7 +30,7 @@ cookbook_file "/home/chef-robot/run-chef-on-all-frontend-nodes-in-this-environme
   action :create
 end
 
-if node.run_list.roles.include?('bastion')
+if node.run_list.roles.include?('bastion') do
   # Bastion host needs the ability to run "sudo git pull".
   cookbook_file "/etc/sudoers.d/chef-robot-bastion"
     source "chef-robot-bastion";
@@ -39,6 +39,6 @@ if node.run_list.roles.include?('bastion')
     mode   0440
     action :create
   end
-then
+end
 
 
