@@ -13,7 +13,7 @@ end
 
 # Used for chef-robot, a member of nogroup
 users_manage 'nogroup' do
-  group_name nogroup
+  group_name 'nogroup'
   action :create
 end
 
