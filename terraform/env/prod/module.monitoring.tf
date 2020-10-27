@@ -1,11 +1,12 @@
 ##  MONITORING / NAGIOS
 module "monitoring" {
-  source                = "../../site-modules/monitoring/0.1.2"
+  source                = "../../site-modules/monitoring/0.1.3"
   name                  = "monitoring"
   ##  INSTANCE CLUSTER
   subnet_group_octet    = "${var.subnet_group_octets["monitoring_instances"]}"
   instance_type         = "t3.medium"
   ecr_arn               = "arn:aws:ecr:us-west-2:695990525005:repository/prom/query-exporter"
+  root_volume_size      = "50"
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings           = "${local.env_strings}"
   base_strings          = "${local.base_strings}"
