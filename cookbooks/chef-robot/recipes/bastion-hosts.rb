@@ -21,7 +21,7 @@ cookbook_file "/home/chef-robot/run-chef-on-all-frontend-nodes-in-this-environme
 end
 
 # Bastion host needs the ability to run "sudo git pull".
-cookbook_file "/etc/sudoers.d/chef-robot-for-bastion-hosts"
+cookbook_file "/etc/sudoers.d/chef-robot-for-bastion-hosts" do
   source "chef-robot-for-bastion-hosts"
   owner  'root'
   group  'root'
