@@ -1,5 +1,5 @@
 # This file is managed by Chef, from the chef-robot cookbook.
 # Do NOT modify this file directly.
-chef-robot ALL = (root) NOPASSWD: /usr/bin/git pull 
+chef-robot ALL = (root) NOPASSWD: /usr/bin/sudo chef-client 
 
 
