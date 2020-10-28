@@ -1,3 +1,7 @@
+include_recipe "chef-robot"
+# i.e., include the default recipe, chef-robot::default
+# This ensures the chef-robot user actually exists! ;-)
+
 # Add authorized_keys file for chef-robot that can ONLY run "sudo chef-client".
 cookbook_file "/home/chef-robot/.ssh/authorized_keys" do
   source "authorized_keys-frontend"

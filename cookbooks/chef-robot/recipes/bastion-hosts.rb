@@ -1,6 +1,10 @@
+include_recipe "chef-robot"
+# i.e., include the default recipe, chef-robot::default
+# This ensures the chef-robot user actually exists! ;-)
+
 # Add authorized_keys file for chef-robot that can ONLY run the "run-chef-on-all-frontend-nodes-in-this-environment.sh" command.
 cookbook_file "/home/chef-robot/.ssh/authorized_keys" do
-  source "authorized_keys-for-bastion-hosts"
+  source "authorized_keys-bastion"
   owner  'chef-robot'
   group  'nogroup'
   mode   0600
@@ -21,8 +25,8 @@ cookbook_file "/home/chef-robot/run-chef-on-all-frontend-nodes-in-this-environme
 end
 
 # Bastion host needs the ability to run "sudo git pull".
-cookbook_file "/etc/sudoers.d/chef-robot-for-bastion-hosts" do
-  source "chef-robot-for-bastion-hosts"
+cookbook_file "/etc/sudoers.d/chef-robot-bastion" do
+  source "chef-robot-bastion"
   owner  'root'
   group  'root'
   mode   0440
