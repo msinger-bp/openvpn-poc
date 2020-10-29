@@ -28,7 +28,12 @@ if [ $AM_I_BASTION -gt 0 ]; then
 	# "-bastion-" detected in the output of "hostname".
 	# I think I am the bastion node. SSH into each -frontend- node,
 	# and run 'sudo chef-client'.
-	(cd /var/chef; sudo git pull)
+
+# The below git pull is is only needed if we want to push from something
+# other than 'latest'. We don't need it for now.
+#	(cd /var/chef; sudo git pull)
+
+
 	for I in $(ls -1 /var/chef/nodes | grep -- '-frontend-' | sed -e 's:.json::g'); do
 		ssh -t $I sudo chef-client;
 	done
