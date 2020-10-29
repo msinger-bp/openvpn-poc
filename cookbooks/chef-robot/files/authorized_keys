@@ -1,5 +1,0 @@
-# Installed by Chef, chef-robot cookbook
-# Local modifications will be overwritten.
-
-command="sh ~/run-chef-on-all-frontend-nodes-in-this-environment.sh",no-port-forwarding,no-x11-forwarding,no-agent-forwarding ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDko5I0h4Pmnc1lNojFgPv+JjctHmC8SsPI7X7R4i8j5jA1H3o3AYOBzxDzUmSb5HEwAFCga/3MO6ybO+PmqRQNcQASzkpwrAFZXrsrEYGXtWeqHGrQCThxVszeNCp64V3droYLlUYqv3OLu+PKNhxSQbmC9uujnk4PVpdD6ltC4nTPYDo7nFz9WV5Sf1Q8iUpn/hNVVAoTVkGCpJZKqqNN3dYhitEL19iD15F5b9kX4TGW3eWGPeUD/mvVxTm6y2b2PpQ7nrdViImRs2wOZ1uFa/aqz2fQQk0ssNisVmMN8PHF5hr4rUh/SL91MdLTPebLlpuWNULLHOUaxZTimuad chefrobot@acadience-dev-bastion-01
-
