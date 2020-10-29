@@ -1,5 +1,5 @@
 # Installed by Chef, chef-robot cookbook
 # Local modifications will be overwritten.
 
-command="sh ~/run-chef-on-all-frontend-nodes-in-this-environment.sh",no-port-forwarding,no-x11-forwarding,no-agent-forwarding ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVypuWegveJNpjCeTA+s9UVG3dEeCDWq3Uflbefaed41U0AyG2l3vJ9iYe7vkRdGLcIYmSdWPljZryO2qVB6MAHOVz2qwd3iEaGzs8wAT2+KIXnNWR5V1ctxc6nIcivmPczoaRv+BVUocWTP/zqJ/FpzDSuCfvM9cwwqRNJ+YUrDTTKOJoo0JsbyfYF0I3M11QNMKfwam0hVcdJQ0HzIaWx2nvCEUuR4zQpjlGSEwgwiDw076H7qxmN9RYkVPTZfEmNAXjl21zrytcNJ9KtDaAZUMTrgu8OAWyvOLFVI8wKbbXvOsPq30zB4fAZ4pGFYsfc4QX8+8Auobp/PbwqL9 chef-robot@acadience-dev-bastion-01
+command="sh ~/run-chef-on-all-frontend-nodes-in-this-environment.sh",no-port-forwarding,no-x11-forwarding ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsVypuWegveJNpjCeTA+s9UVG3dEeCDWq3Uflbefaed41U0AyG2l3vJ9iYe7vkRdGLcIYmSdWPljZryO2qVB6MAHOVz2qwd3iEaGzs8wAT2+KIXnNWR5V1ctxc6nIcivmPczoaRv+BVUocWTP/zqJ/FpzDSuCfvM9cwwqRNJ+YUrDTTKOJoo0JsbyfYF0I3M11QNMKfwam0hVcdJQ0HzIaWx2nvCEUuR4zQpjlGSEwgwiDw076H7qxmN9RYkVPTZfEmNAXjl21zrytcNJ9KtDaAZUMTrgu8OAWyvOLFVI8wKbbXvOsPq30zB4fAZ4pGFYsfc4QX8+8Auobp/PbwqL9 chef-robot@acadience-dev-bastion-01
 
