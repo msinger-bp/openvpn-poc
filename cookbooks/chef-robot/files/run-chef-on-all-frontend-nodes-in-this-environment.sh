@@ -35,7 +35,7 @@ if [ $AM_I_BASTION -gt 0 ]; then
 
 
 	for I in $(ls -1 /var/chef/nodes | grep -- '-frontend-' | sed -e 's:.json::g'); do
-		ssh -t $I sudo chef-client;
+		ssh -o "StrictHostKeyChecking=no" -t $I sudo chef-client;
 	done
 else
 	echo "ERROR: This script should only be run on bastion hosts. Exiting.";
