@@ -1,11 +1,8 @@
 # This code will create a robot user, and ensure that
 # its group exists if it doesn't already.
 #
-# Define the following parameters in attributes/default.rb:
-# default['chef-robot']['robot']['user']
-# default['chef-robot']['robot']['uid']
-# default['chef-robot']['robot']['group']
-# default['chef-robot']['robot']['gid']
+# The default['chef-robot']['robot'][FOO] stuff is defined in
+# attributes/default.rb.
 #
 # This code is based on a similar pattern found in:
 # acadience-infra/site-cookbooks/acadience-frontend/default.rb
@@ -19,7 +16,18 @@ end
 user node[cookbook_name]['robot']['user'] do
   uid     node[cookbook_name]['robot']['uid']
   gid     node[cookbook_name]['robot']['gid']
+  home    node[cookbook_name]['robot']['home']
+  manage_home true
   comment "Chef-Robot user created by chef-robot Chef cookbook"
   system  true
   action  :create
 end
+
+directory node[cookbook_name]['robot']['ssh_dir'] do
+  owner node[cookbook_name]['robot']['user']
+  group node[cookbook_name]['robot']['group']
+  mode   0600
+  action :create
+  recursive true
+end
+

@@ -12,7 +12,7 @@
 # https://mwiki.bitpusher.com/index.php/Acadience_Deployments
 #
 # This should be the only script chef-robot is allowed to run on bastion hosts.
-# Make this so via ensuring that /home/chef-robot/.ssh/authorized_keys
+# Make this so via ensuring that the chef robot user's .ssh/authorized_keys
 # looks like this:
 # command="sh ~/run-chef-on-all-frontend-nodes-in-this-environment.sh",no-port-forwarding,no-x11-forwarding,no-agent-forwarding ssh-rsa KEY_GOES_HERE
 #
