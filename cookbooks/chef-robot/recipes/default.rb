@@ -26,7 +26,7 @@ end
 directory node[cookbook_name]['robot']['ssh_dir'] do
   owner node[cookbook_name]['robot']['user']
   group node[cookbook_name]['robot']['group']
-  mode   0600
+  mode   0500
   action :create
   recursive true
 end
