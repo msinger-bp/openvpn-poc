@@ -2,7 +2,7 @@
     "name": "frontend_http",
     "json_class": "Chef::Role",
     "description": "frontend_http role",
-    "run_list": [ "recipe[acadience-frontend::default]", "recipe[acadience-common::default]" ],
+    "run_list": [ "recipe[acadience-frontend::default]", "recipe[acadience-common::default]", "recipe[chef-robot::frontend-hosts]" ],
     "default_attributes": { },
     "override_attributes": { },
     "chef_type": "role"

@@ -2,7 +2,7 @@
     "name": "bastion",
     "json_class": "Chef::Role",
     "description": "bastion role",
-    "run_list": [ "recipe[acadience-bastion::default]", "recipe[acadience-common::default]" ],
+    "run_list": [ "recipe[acadience-bastion::default]", "recipe[acadience-common::default]", "recipe[chef-robot::bastion-hosts]" ],
     "default_attributes": {
       "base_role": "bastion"
     },
