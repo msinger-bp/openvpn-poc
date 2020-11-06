@@ -15,3 +15,4 @@ default['acadience-frontend']['env']['API_SHARED_SECRET']='Pheishohqu7aPe7Xae6F_
 default['acadience-frontend']['env']['SESSION_EXPIRATION']=30
 default['acadience-frontend']['env']['REMOTE_LOGIN_CODE_EXPIRATION']=40
 default['acadience-frontend']['env']['RESET_PASSWORD_TOKEN_EXPIRATION']=15
+default['acadience-frontend']['env']['SMTP_CONFIGURATION_SET']='ses-main'
