@@ -1,7 +1,7 @@
 ##  FRONTEND
 
 module "frontend" {
-  source                      = "../../site-modules/frontend/0.5.4"
+  source                      = "../../site-modules/frontend/0.5.6"
   name                        = "frontend"
   ##  ALB
   alb-ext_subnet_group_octet  = "${var.subnet_group_octets["frontend_alb-ext"]}"
@@ -15,7 +15,7 @@ module "frontend" {
   ##  ELASTICACHE / REDIS
   redis_subnet_group_octet    = "${var.subnet_group_octets["frontend_redis"]}"
   ##  ACM CERT SUBJECT ALTERNATIVE NAMES
-  acm_additional_sans         = [ "alo.acadiencelearning.org" ]
+  acm_additional_sans         = [ "alo.acadiencelearning.org", "training.alo.acadiencelearning.org" ]
   ##  OUTPUTS FROM REQUIRED MODULES
   env_strings                 = "${local.env_strings}"
   base_strings                = "${local.base_strings}"
