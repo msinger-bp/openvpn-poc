@@ -7,7 +7,7 @@ module "maindb" {
   ##  FOR VERSION COMPATIBILITY, CONSULT https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
   engine_major_version    = "5.7"
   engine_minor_version    = "22"
-  instance_class          = "db.m5.large"
+  instance_class          = "db.m5.2xlarge"
   ##  FOR STORAGE COMPATIBILITY, CONSULT: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
   allocated_storage       = "100"
   max_allocated_storage   = "500"
