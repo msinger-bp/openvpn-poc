@@ -154,7 +154,7 @@ nagios_command 'service_notify_by_email_with_from_address' do
 end
 
 nagios_command 'host_notify_by_email_with_from_address' do
-  options 'command_line'        => '/usr/bin/printf "%b" "$LONGDATETIME$ - $SERVICEDESC$ $SERVICESTATE$\n\n$HOSTALIAS$  $NOTIFICATIONTYPE$\n\n$SERVICEOUTPUT$\n\nLogin: ssh://$HOSTNAME$" | /usr/bin/mail -r nagios@bitpusher.com -s "** (' + node['environment_name'] + ') $NOTIFICATIONTYPE$ - $HOSTALIAS$ - $SERVICEDESC$ - $SERVICESTATE$" $CONTACTEMAIL$'
+  options 'command_line'        => '/usr/bin/printf "%b" "$HOSTALIAS$ $NOTIFICATIONTYPE$ $HOSTSTATE$\n\n$HOSTOUTPUT$" | /usr/bin/mail -s "** (' + node['environment_name'] + ') $HOSTALIAS$ is $HOSTSTATE$!" $CONTACTPAGER$'
 end
 
 nagios_command 'service_notify_by_email_not_default' do
@@ -162,7 +162,7 @@ nagios_command 'service_notify_by_email_not_default' do
 end
 
 nagios_command 'host_notify_by_email_not_default' do
-  options 'command_line'        => '/usr/bin/printf "%b" "$LONGDATETIME$ - $SERVICEDESC$ $SERVICESTATE$\n\n$HOSTALIAS$  $NOTIFICATIONTYPE$\n\n$SERVICEOUTPUT$\n\nLogin: ssh://$HOSTNAME$" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ - $HOSTALIAS$ - $SERVICEDESC$ - $SERVICESTATE$" $CONTACTEMAIL$'
+  options 'command_line'        => '/usr/bin/printf "%b" "$HOSTALIAS$ $NOTIFICATIONTYPE$ $HOSTSTATE$\n\n$HOSTOUTPUT$" | /usr/bin/mail -s "$HOSTALIAS$ is $HOSTSTATE$!" $CONTACTPAGER$'
 end
 
 nagios_contact 'bitpusher-critical-email' do
