@@ -106,7 +106,7 @@ env=[ "NODE_ENV=production",
       ].flatten
 
 #this is a temporary hack, do not copy or idolize
-env << "SOCKETIO_REDIS=//#{node['socketio']['host']}:#{node['socketio']['port']}" if node.chef_environment == 'dev'
+env << "SOCKETIO_REDIS=//#{node['socketio']['host']}:#{node['socketio']['port']}" if node['env_flags']['socketio_redis']==true
 
 docker_image_prune 'frontend' do
   dangling false
